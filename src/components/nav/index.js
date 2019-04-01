@@ -1,6 +1,7 @@
-import menuConfig from '../../config/menuConfig'
+import { Menu } from 'antd'
 import React from 'react'
-import {Menu} from 'antd'
+
+import menuConfig from 'config/menuConfig'
 
 const SubMenu = Menu.SubMenu
 

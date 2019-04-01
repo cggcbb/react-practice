@@ -1,10 +1,10 @@
 import './App.css'
-import './style/common.less'
+import 'style/common.less'
 import React from 'react'
 import { Row, Col } from 'antd';
-import Header from './components/header'
-import Footer from './components/footer'
-import Nav from './components/nav'
+import Header from 'components/header'
+import Footer from 'components/footer'
+import Nav from 'components/nav'
 
 class App extends React.Component {
   render() {
