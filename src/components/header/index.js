@@ -1,5 +1,7 @@
+import { getChengduWeather } from 'api/weather'
 import { optimizeCurrentTime } from 'common/js/utils'
 import { Row, Col } from 'antd'
+import { SUCCESS_STATUS, SUCCESS_CODE } from 'common/js/config'
 import React from 'react'
 
 import './index.less'
@@ -15,6 +17,8 @@ export default class Header extends React.Component {
         sysTime: optimizeCurrentTime()
       })
     }, 1000)
+    // 获取成都天气
+    this._getChengduWeather();
   }
   render() {
     return (
@@ -31,7 +35,8 @@ export default class Header extends React.Component {
           </Col>
           <Col span={20} className="weather">
             <span className="date">{this.state.sysTime}</span>
-            <span className="weather-detail">晴转多云</span>
+            <span className="city">{this.state.city}</span>
+            <span className="weather-detail">{this.state.weather}</span>
           </Col>
         </Row>
       </header>
@@ -39,5 +44,18 @@ export default class Header extends React.Component {
   }
   logout() {
     console.log('click logout')
+  }
+  _getChengduWeather = () => {
+    getChengduWeather().then(res => {
+      if (res.status === SUCCESS_STATUS && res.infocode === SUCCESS_CODE) {
+        let { weather, city } = res.lives[0]
+        this.setState({
+          weather,
+          city
+        })
+      }
+    }).catch(err => {
+      console.log(err)
+    })
   }
 }
