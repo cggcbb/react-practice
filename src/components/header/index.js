@@ -1,10 +1,10 @@
+import './index.less'
+
 import { getChengduWeather } from 'api/weather'
 import { optimizeCurrentTime } from 'common/js/utils'
 import { Row, Col } from 'antd'
 import { SUCCESS_STATUS, SUCCESS_CODE } from 'common/js/config'
 import React from 'react'
-
-import './index.less'
 
 export default class Header extends React.Component {
   componentWillMount() {
