@@ -1,4 +1,3 @@
-
 // 格式化当前时间 eg: 2019-04-01 23:09:29
 const optimizeCurrentTime = () => {
   let current = new Date()
