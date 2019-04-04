@@ -1,7 +1,7 @@
 import { Menu } from 'antd'
-import React from 'react'
-
+import { NavLink } from 'react-router-dom'
 import menuConfig from 'config/menuConfig'
+import React from 'react'
 
 const SubMenu = Menu.SubMenu
 
@@ -35,7 +35,11 @@ export default class Nav extends React.Component {
           </SubMenu>
         )
       }
-      return <Menu.Item key={item.key}>{item.title}</Menu.Item>
+      return (
+        <Menu.Item key={item.key}>
+          <NavLink to={item.key}>{item.title}</NavLink>
+        </Menu.Item>
+      )
     })
   }
   // 切换菜单

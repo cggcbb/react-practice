@@ -272,7 +272,8 @@ module.exports = function(webpackEnv) {
         'config': path.join(__dirname, '../', 'src/config'),
         'style': path.join(__dirname, '../', 'src/style'),
         'api': path.join(__dirname, '../', 'src/api'),
-        'pages': path.join(__dirname, '../', 'src/pages')
+        'pages': path.join(__dirname, '../', 'src/pages'),
+        'router': path.join(__dirname, '../', 'src/router')
       },
       plugins: [
         // Adds support for installing with Plug'n'Play, leading to faster installs and adding
