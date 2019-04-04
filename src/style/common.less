@@ -1,14 +1,17 @@
+@import './default.less';
+
 .container {
   display: flex;
     .nav-left {
       width: 15%;
       min-width: 180px;
       height: calc(100vh);
-      background-color: #fff;
-      border-right: 1px solid #e8e8e8;
+      background-color: @color-white;
+      border-right: 1px solid @color-light-gray;
     }
     .main {
       flex: 1;
+      background-color: @color-gray;
     }
     .content {
       position: relative;

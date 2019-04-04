@@ -1,10 +1,10 @@
-import './index.less'
+import { Col, Row } from 'antd';
+import { getChengduWeather } from 'api/weather';
+import { optimizeCurrentTime } from 'common/js/utils';
+import { SUCCESS_CODE, SUCCESS_STATUS } from 'common/js/config';
+import React from 'react';
 
-import { getChengduWeather } from 'api/weather'
-import { optimizeCurrentTime } from 'common/js/utils'
-import { Row, Col } from 'antd'
-import { SUCCESS_STATUS, SUCCESS_CODE } from 'common/js/config'
-import React from 'react'
+import './index.less';
 
 export default class Header extends React.Component {
   componentWillMount() {
@@ -37,6 +37,7 @@ export default class Header extends React.Component {
             <span className="date">{this.state.sysTime}</span>
             <span className="city">{this.state.city}</span>
             <span className="weather-detail">{this.state.weather}</span>
+            <span className="temperature">{this.state.temperature}℃</span>
           </Col>
         </Row>
       </header>
@@ -48,10 +49,11 @@ export default class Header extends React.Component {
   _getChengduWeather = () => {
     getChengduWeather().then(res => {
       if (res.status === SUCCESS_STATUS && res.infocode === SUCCESS_CODE) {
-        let { weather, city } = res.lives[0]
+        let { weather, city, temperature } = res.lives[0]
         this.setState({
           weather,
-          city
+          city,
+          temperature
         })
       }
     }).catch(err => {

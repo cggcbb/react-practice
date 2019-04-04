@@ -1,9 +1,10 @@
 import React from 'react'
+import './index.less'
 
 export default class Footer extends React.Component {
   render() {
     return (
-      <div style={{padding: '30px'}}>footer</div>
+      <div className="footer">版权所有：chengdu&cggcbb （推荐使用谷歌浏览器，可以获得更佳体验）</div>
     )
   }
 }
