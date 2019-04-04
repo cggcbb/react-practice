@@ -10,7 +10,7 @@ import 'style/common.less'
 // import Home from 'pages/home'
 
 class App extends React.Component {
-  render () {
+  render() {
     return (
       <Row className="container">
         <Col span={3} className="nav-left">

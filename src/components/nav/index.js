@@ -59,7 +59,7 @@ export default class Nav extends React.Component {
         mode="inline"
         openKeys={this.state.openKeys}
         onOpenChange={this.onOpenChange}
-        style={{borderRight: 'none'}}
+        theme="dark"
       >
         {this.state.menuTreeNode}
       </Menu>

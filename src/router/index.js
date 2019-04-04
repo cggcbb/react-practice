@@ -7,7 +7,7 @@ import NoMatch from 'pages/no-match'
 import React from 'react'
 
 export default class Router extends React.Component {
-  render () {
+  render() {
     return (
       <HashRouter>
         <App>
