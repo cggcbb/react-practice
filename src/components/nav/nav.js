@@ -1,4 +1,4 @@
-import { Menu } from 'antd'
+import { Menu, Switch } from 'antd'
 import { NavLink } from 'react-router-dom'
 import menuConfig from 'config/menuConfig'
 import React from 'react'
@@ -10,7 +10,8 @@ export default class Nav extends React.Component {
     super(props)
     this.state = {
       rootSubmenuKeys: [],
-      openKeys: []
+      openKeys: [],
+      theme: 'dark'
     }
   }
   componentWillMount() {
@@ -55,14 +56,16 @@ export default class Nav extends React.Component {
   }
   render() {
     return (
-      <Menu
-        mode="inline"
-        openKeys={this.state.openKeys}
-        onOpenChange={this.onOpenChange}
-        theme="dark"
-      >
-        {this.state.menuTreeNode}
-      </Menu>
+      <nav>
+        <Menu
+          mode="inline"
+          openKeys={this.state.openKeys}
+          onOpenChange={this.onOpenChange}
+          theme={this.state.theme}
+        >
+          {this.state.menuTreeNode}
+        </Menu>
+      </nav>
     )
   }
 }

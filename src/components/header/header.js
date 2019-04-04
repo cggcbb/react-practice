@@ -4,7 +4,7 @@ import { optimizeCurrentTime } from 'common/js/utils';
 import { SUCCESS_CODE, SUCCESS_STATUS } from 'common/js/config';
 import React from 'react';
 
-import './index.less';
+import './header.less';
 
 export default class Header extends React.Component {
   componentWillMount() {
