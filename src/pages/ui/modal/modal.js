@@ -1,4 +1,4 @@
-import { Card, Button, Modal, message } from 'antd'
+import { Card, Button, Modal } from 'antd'
 import React from 'react'
 
 import './modal.less'
@@ -13,7 +13,8 @@ export default class Modals extends React.Component {
       showModal4: false,
       showModal5: false,
       showModal6: false,
-      showModal7: false
+      showModal7: false,
+      showModal8: false
     })
   }
   handleClick(type) {
@@ -21,144 +22,144 @@ export default class Modals extends React.Component {
       [type]: true
     })
   }
-  handleCancel(type, message) {
+  handleCancel(type) {
     this.setState({
       [type]: false
     })
-    message.warn(message)
   }
-  handleOk(type, message) {
+  handleOk(type) {
     this.setState({
       [type]: false
     })
-    message.success(message)
   }
-  handleLoadingOk(message) {
+  handleLoadingOk() {
     this.setState({ loading: true })
-    message.success(message)
     setTimeout(() => {
-      this.setState({ loading: false, 'showModal6': false })
+      this.setState({ loading: false, 'showModal8': false })
     }, 3000)
   }
-  info = () => {
-    Modal.info({
+  handleConfirm = (type) => {
+    Modal[type]({
       title: 'This is a notification message',
-      content: 'some messages...some messages...'
+      content: 'some messages...some messages...',
+      onOk() {
+        console.log('ok')
+      },
+      onCancel() {
+        console.log('cancel')
+      }
     });
   }
-  success = () => {
-    Modal.success({
-      title: 'This is a success message',
-      content: 'some messages...some messages...'
-    })
-  }
-  error = () => {
-    Modal.error({
-      title: 'This is an error message',
-      content: 'some messages...some messages...'
-    })
-  }
-  warning = () => {
-    Modal.warning({
-      title: 'This is a warning message',
-      content: 'some messages...some messages...'
-    })
+  countDown = () => {
+    let secondsToGo = 5
+    const modal = Modal.success({
+      title: 'This is a notification message',
+      content: `This modal will be destroyed after ${secondsToGo} second.`
+    });
+    const timer = setInterval(() => {
+      secondsToGo -= 1
+      modal.update({
+        content: `This modal will be destroyed after ${secondsToGo} second.`
+      });
+    }, 1000)
+    setTimeout(() => {
+      clearInterval(timer)
+      modal.destroy()
+    }, secondsToGo * 1000)
   }
   render() {
     return (
       <div>
-        <Card title="默认模态框" className="card-wrapper">
+        <Card title="基础模态框" className="card-wrapper" hoverable={true} size="small">
           <Button type="primary" onClick={() => this.handleClick('showModal1')}>默认</Button>
-          <Button onClick={() => this.handleClick('showModal1')}>默认</Button>
-          <Button type="dashed" onClick={() => this.handleClick('showModal1')}>默认</Button>
-          <Button type="danger" onClick={() => this.handleClick('showModal1')}>默认</Button>
-        </Card>
-        <Card title="自定义页脚模态框" className="card-wrapper">
           <Button type="primary" onClick={() => this.handleClick('showModal2')}>自定义页脚</Button>
-          <Button onClick={() => this.handleClick('showModal2')}>自定义页脚</Button>
-          <Button type="dashed" onClick={() => this.handleClick('showModal2')}>自定义页脚</Button>
-          <Button type="danger" onClick={() => this.handleClick('showModal2')}>自定义页脚</Button>
-        </Card>
-        <Card title="顶部水平居中弹框" className="card-wrapper">
           <Button type="primary" onClick={() => this.handleClick('showModal3')}>顶部水平居中</Button>
-          <Button onClick={() => this.handleClick('showModal3')}>顶部水平居中</Button>
-          <Button type="dashed" onClick={() => this.handleClick('showModal3')}>顶部水平居中</Button>
-          <Button type="danger" onClick={() => this.handleClick('showModal3')}>顶部水平居中</Button>
-        </Card>
-        <Card title="水平垂直居中" className="card-wrapper">
           <Button type="primary" onClick={() => this.handleClick('showModal4')}>水平垂直居中</Button>
-          <Button onClick={() => this.handleClick('showModal4')}>水平垂直居中</Button>
-          <Button type="dashed" onClick={() => this.handleClick('showModal4')}>水平垂直居中</Button>
-          <Button type="danger" onClick={() => this.handleClick('showModal4')}>水平垂直居中</Button>
         </Card>
-        <Card title="禁用取消按钮" className="card-wrapper">
-          <Button type="primary" onClick={() => this.handleClick('showModal5')}>禁用取消</Button>
-          <Button onClick={() => this.handleClick('showModal5')}>禁用取消</Button>
-          <Button type="dashed" onClick={() => this.handleClick('showModal5')}>禁用取消</Button>
-          <Button type="danger" onClick={() => this.handleClick('showModal5')}>禁用取消</Button>
+        <Card title="禁用按钮" className="card-wrapper" hoverable={true} size="small">
+          <Button type="danger" onClick={() => this.handleClick('showModal5')}>禁用取消按钮</Button>
+          <Button type="danger" onClick={() => this.handleClick('showModal6')}>禁用确定按钮</Button>
         </Card>
-        <Card title="提交异步关闭按钮" className="card-wrapper">
-          <Button type="primary" onClick={() => this.handleClick('showModal6')}>提交异步关闭</Button>
-          <Button onClick={() => this.handleClick('showModal6')}>提交异步关闭</Button>
-          <Button type="dashed" onClick={() => this.handleClick('showModal6')}>提交异步关闭</Button>
-          <Button type="danger" onClick={() => this.handleClick('showModal6')}>提交异步关闭</Button>
+        <Card title="延时自动关闭" className="card-wrapper" hoverable={true} size="small">
+          <Button type="primary" onClick={() => this.countDown('showModal7')}>延时自动关闭</Button>
         </Card>
-        <Card title="只提供一个按钮用于关闭" className="card-wrapper">
-          <Button type="primary" onClick={this.info}>Info</Button>
-          <Button onClick={this.success}>Success</Button>
-          <Button onClick={this.warning}>Warning</Button>
-          <Button type="danger" onClick={this.error}>Error</Button>
+        <Card title="提交异步关闭按钮" className="card-wrapper" hoverable={true} size="small">
+          <Button type="primary" onClick={() => this.handleClick('showModal8')}>提交异步关闭</Button>
+        </Card>
+        <Card title="只提供一个按钮用于关闭" className="card-wrapper" hoverable={true} size="small">
+          <Button onClick={() => this.handleConfirm('confirm')}>confirm</Button>
+          <Button type="primary" onClick={() => this.handleConfirm('info')}>Info</Button>
+          <Button onClick={() => this.handleConfirm('success')}>Success</Button>
+          <Button onClick={() => this.handleConfirm('warning')}>Warning</Button>
+          <Button type="danger" onClick={() => this.handleConfirm('error')}>Error</Button>
         </Card>
         <Modal 
           title="React" 
           visible={this.state.showModal1}
-          onCancel={() => this.handleCancel('showModal1', '点击了 默认 modal 取消按钮')}
-          onOk={() => this.handleOk('showModal1', '点击了 默认 modal 确定按钮')}
+          onCancel={() => this.handleCancel('showModal1')}
+          onOk={() => this.handleOk('showModal1')}
         >
           <p>这是 React modal ~~</p>
         </Modal>
         <Modal 
           title="React" 
           visible={this.state.showModal2}
-          onCancel={() => this.handleCancel('showModal2', '点击了 自定义页脚 modal 取消按钮')}
+          onCancel={() => this.handleCancel('showModal2')}
           okText="确定"
           cancelText="取消"
-          onOk={() => this.handleOk('showModal2', '点击了 自定义页脚 modal 确定按钮')}
+          onOk={() => this.handleOk('showModal2')}
         >
           <p>这是 React modal ~~</p>
         </Modal>
         <Modal 
           title="React" 
           visible={this.state.showModal3}
-          onCancel={() => this.handleCancel('showModal3', '点击了 顶部水平居中弹框 modal 取消按钮')}
+          onCancel={() => this.handleCancel('showModal3')}
           style={{top: 0}}
-          onOk={() => this.handleOk('showModal3', '点击了 顶部水平居中弹框 modal 确定按钮')}
+          onOk={() => this.handleOk('showModal3')}
         >
           <p>这是 React modal ~~</p>
         </Modal>
         <Modal 
           title="React" 
           visible={this.state.showModal4}
-          onCancel={() => this.handleCancel('showModal4', '点击了 水平垂直居中 modal 取消按钮')}
+          onCancel={() => this.handleCancel('showModal4')}
           centered
-          onOk={() => this.handleOk('showModal4', '点击了 水平垂直居中 modal 确定按钮')}
+          onOk={() => this.handleOk('showModal4')}
         >
           <p>这是 React modal ~~</p>
         </Modal>
         <Modal 
           title="React" 
           visible={this.state.showModal5}
-          onOk={() => this.handleOk('showModal5', '点击了 禁用取消按钮 modal 确定按钮')}
+          onOk={() => this.handleOk('showModal5')}
           cancelButtonProps={{ disabled: true }}
+          closable={false}
+        >
+          <p>这是 React modal ~~</p>
+        </Modal>
+        <Modal 
+          title="React" 
+          visible={this.state.showModal6}
+          onCancel={() => this.handleOk('showModal6')}
+          okButtonProps={{ disabled: true }}
+        >
+          <p>这是 React modal ~~</p>
+        </Modal>
+        <Modal 
+          title="React" 
+          visible={this.state.showModal7}
+          onCancel={() => this.handleOk('showModal7')}
         >
           <p>这是 React modal ~~</p>
         </Modal>
         <Modal 
             title="React" 
-            visible={this.state.showModal6}
+            visible={this.state.showModal8}
+            onCancel={() => this.handleCancel('showModal8')}
             footer={[
-              <Button key="back" onClick={() => this.handleCancel('showModal6', '点击了 提交异步关闭 modal 取消按钮')}>取消</Button>,
-              <Button key="submit" type="primary" loading={this.state.loading} onClick={() => this.handleLoadingOk('点击了 提交异步关闭 modal 提交按钮, 提交申请中 ~~~~~')}>
+              <Button key="back" onClick={() => this.handleCancel('showModal8')}>取消</Button>,
+              <Button key="submit" type="primary" loading={this.state.loading} onClick={() => this.handleLoadingOk()}>
                 提交
               </Button>,
             ]}
