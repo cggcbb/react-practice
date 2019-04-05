@@ -1,4 +1,4 @@
-import { Menu, Switch } from 'antd'
+import { Menu } from 'antd'
 import { NavLink } from 'react-router-dom'
 import menuConfig from 'config/menuConfig'
 import React from 'react'
