@@ -69,7 +69,7 @@ export default class Modals extends React.Component {
   }
   render() {
     return (
-      <div>
+      <section>
         <Card title="基础模态框" className="card-wrapper" hoverable={true} size="small">
           <Button type="primary" onClick={() => this.handleClick('showModal1')}>默认</Button>
           <Button type="primary" onClick={() => this.handleClick('showModal2')}>自定义页脚</Button>
@@ -166,7 +166,7 @@ export default class Modals extends React.Component {
           >
             <p>这是 React modal ~~</p>
           </Modal>
-      </div>
+      </section>
     )
   }
 }

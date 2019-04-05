@@ -27,7 +27,7 @@ export default class Buttons extends React.Component {
   }
   render() {
     return (
-      <div>
+      <section>
         <Card title="基础按钮" className="card-wrapper" hoverable={true} size="small">
           <Button type="primary">primary</Button>
           <Button>default</Button>
@@ -78,7 +78,7 @@ export default class Buttons extends React.Component {
           <Button type="dashed" size={this.state.size}>确定</Button>
           <Button type="danger" size={this.state.size}>确定</Button>
         </Card>
-      </div>
+      </section>
     )
   }
 }
