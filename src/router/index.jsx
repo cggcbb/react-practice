@@ -5,6 +5,7 @@ import Button from 'pages/ui/button/button'
 import Loading from 'pages/ui/loading/loading'
 import Login from 'pages/login/login'
 import Modal from 'pages/ui/modal/modal'
+import Notice from 'pages/ui/notice/notice'
 import NoMatch from 'pages/no-match/no-match'
 import React from 'react'
 
@@ -22,6 +23,7 @@ export default class Router extends React.Component {
                     <Route path="/admin/ui/button" component={Button}></Route>
                     <Route path="/admin/ui/modal" component={Modal}></Route>
                     <Route path="/admin/ui/loading" component={Loading}></Route>
+                    <Route path="/admin/ui/notification" component={Notice}></Route>
                     <Route component={NoMatch} />
                   </Switch>
                 </Admin>
