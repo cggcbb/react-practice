@@ -1,7 +1,8 @@
-import { Menu } from 'antd'
+import { Menu, Switch } from 'antd'
 import { NavLink } from 'react-router-dom'
 import menuConfig from 'config/menuConfig'
 import React from 'react'
+
 
 const SubMenu = Menu.SubMenu
 
@@ -11,7 +12,8 @@ export default class Nav extends React.Component {
     this.state = {
       rootSubmenuKeys: [],
       openKeys: [],
-      theme: 'dark'
+      theme: 'dark',
+      navColor: '#fff'
     }
   }
   componentWillMount() {
@@ -54,14 +56,31 @@ export default class Nav extends React.Component {
       })
     }
   }
+  changeTheme = (value) => {
+    this.setState({
+      theme: value ? 'dark' : 'light',
+      navColor: value ? '#fff' : '#001529'
+    })
+    let dom = document.getElementsByClassName('nav-left')[0]
+    dom.style.transition = '.3s'
+    dom.style.backgroundColor = this.state.navColor
+  }
   render() {
     return (
       <nav>
+        <Switch
+          checked={this.state.theme === 'dark'}
+          onChange={this.changeTheme}
+          checkedChildren="Dark"
+          unCheckedChildren="Light"
+          className="nav-switch"
+        />
         <Menu
           mode="inline"
           openKeys={this.state.openKeys}
           onOpenChange={this.onOpenChange}
           theme={this.state.theme}
+          style={{border: 'none'}}
         >
           {this.state.menuTreeNode}
         </Menu>
