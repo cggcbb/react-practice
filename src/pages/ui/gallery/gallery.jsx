@@ -1,8 +1,6 @@
 import React from 'react'
 import { Card, Row, Col, Modal, Button, Icon, message } from 'antd'
 
-import './gallery.less'
-
 export default class messages extends React.Component {
   componentWillMount() {
     let imgName = 1
