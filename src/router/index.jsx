@@ -7,6 +7,7 @@ import Login from 'pages/login/login'
 import Modal from 'pages/ui/modal/modal'
 import Notice from 'pages/ui/notice/notice'
 import Message from 'pages/ui/message/message'
+import Tab from 'pages/ui/tab/tab'
 import NoMatch from 'pages/no-match/no-match'
 import React from 'react'
 
@@ -26,6 +27,7 @@ export default class Router extends React.Component {
                     <Route path="/admin/ui/loading" component={Loading}></Route>
                     <Route path="/admin/ui/notification" component={Notice}></Route>
                     <Route path="/admin/ui/message" component={Message}></Route>
+                    <Route path="/admin/ui/tab" component={Tab}></Route>
                     <Route component={NoMatch} />
                   </Switch>
                 </Admin>
