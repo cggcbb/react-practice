@@ -5,7 +5,7 @@ const menuList = [
   },
   {
     rootKey: '1',
-    title: 'UI',
+    title: '设计',
     key: '/admin/ui',
     children: [
       {
