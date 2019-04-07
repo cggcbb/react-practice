@@ -15,7 +15,7 @@ export default class Carousels extends React.Component {
             <div><h3>Ant Motion Banner - Angular</h3></div>
           </Carousel>
         </Card>
-        <Card title="水平方向图片轮播  (淡隐淡出)" className="card-wrapper carousel-wrapper" hoverable size="small">
+        <Card title="水平方向图片轮播  (淡隐淡出模式)" className="card-wrapper carousel-wrapper" hoverable size="small">
           <Carousel autoplay effect="fade">
             {
               images.map(item => 
