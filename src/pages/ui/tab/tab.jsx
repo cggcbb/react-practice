@@ -61,21 +61,21 @@ export default class Tab extends React.Component {
   render() {
     return (
       <section>
-        <Card title="Tab页签" className="card-wrapper" hoverable={true} size="small">
+        <Card title="Tab页签" className="card-wrapper" hoverable size="small">
           <Tabs defaultActiveKey="1" onChange={this.handleChange} size="small">
             <TabPane tab="tab1" key="1">Content of Tab Pane 1</TabPane>
             <TabPane tab="tab2" key="2">Content of Tab Pane 2</TabPane>
             <TabPane tab="tab3" key="3">Content of Tab Pane 3</TabPane>
           </Tabs>
         </Card>
-        <Card title="带图标的Tab页签" className="card-wrapper" hoverable={true} size="small">
+        <Card title="带图标的Tab页签" className="card-wrapper" hoverable size="small">
           <Tabs defaultActiveKey="1" onChange={this.handleChange}>
             <TabPane tab={<span><Icon type="plus" />tab1</span>} key="1">Content of Tab Pane 1</TabPane>
             <TabPane tab={<span><Icon type="edit" />tab2</span>} key="2">Content of Tab Pane 2</TabPane>
             <TabPane tab={<span><Icon type="delete" />tab3</span>} key="3" disabled>Content of Tab Pane 3</TabPane>
           </Tabs>
         </Card>
-        <Card title="动态添加Tab页签" className="card-wrapper" hoverable={true} size="small">
+        <Card title="动态添加Tab页签" className="card-wrapper" hoverable size="small">
           <Tabs type="editable-card" activeKey={this.state.activeKey} onChange={this.onChange} onEdit={this.onEdit}>
             {
               this.state.panes.map(pane => {

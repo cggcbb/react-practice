@@ -16,6 +16,50 @@ export default class messages extends React.Component {
       visible: false
     })
   }
+  openGallery = (pictureName) => {
+    this.setState({
+      visible: true,
+      currentImage: `/gallery/${pictureName}`
+    })
+  }
+  closeGallery = () => {
+    this.setState({
+      visible: false
+    })
+  }
+  // 上一张
+  prev = () => {
+    let currentIndex = this._findCurrentImage()
+    if (Object.is(currentIndex, 0)) {
+      message.info('已经是第一张图片了 ~~~')
+      return
+    }
+    this._changeCurrentImage(currentIndex - 1)
+  }
+  // 下一张
+  next = () => {
+    let originPic = this.state.imgOrigin 
+    let currentIndex = this._findCurrentImage()
+    if (Object.is(currentIndex, originPic.flat().length - 1)) {
+      message.info('已经是最后一张图片了 ~~~')
+      return
+    }
+    this._changeCurrentImage(currentIndex + 1)
+  }
+   // 找到当前展示图片索引
+  _findCurrentImage = () => {
+    let currentImage = this.state.currentImage
+    let originPic = this.state.imgOrigin
+    return originPic.flat().findIndex(el => `/gallery/${el}` === currentImage)
+  }
+  // 更新当前展示图片
+  _changeCurrentImage = (index) => {
+    let originPic = this.state.imgOrigin
+    let showIndex = originPic.flat()[index]
+    this.setState({
+      currentImage: `/gallery/${showIndex}`
+    })
+  }
   render() {
     const imgList = this.state.imgOrigin.map(list => list.map(item =>
       <Card 
@@ -60,49 +104,5 @@ export default class messages extends React.Component {
         </Modal>
       </section>
     )
-  }
-  openGallery = (pictureName) => {
-    this.setState({
-      visible: true,
-      currentImage: `/gallery/${pictureName}`
-    })
-  }
-  closeGallery = () => {
-    this.setState({
-      visible: false
-    })
-  }
-  // 上一张
-  prev = () => {
-    let currentIndex = this._findCurrentImage()
-    if (Object.is(currentIndex, 0)) {
-      message.info('已经是第一张图片了 ~~~')
-      return
-    }
-    this._changeCurrentImage(currentIndex - 1)
-  }
-  // 下一张
-  next = () => {
-    let originPic = this.state.imgOrigin 
-    let currentIndex = this._findCurrentImage()
-    if (Object.is(currentIndex, originPic.flat().length - 1)) {
-      message.info('已经是最后一张图片了 ~~~')
-      return
-    }
-    this._changeCurrentImage(currentIndex + 1)
-  }
-   // 找到当前展示图片索引
-  _findCurrentImage = () => {
-    let currentImage = this.state.currentImage
-    let originPic = this.state.imgOrigin
-    return originPic.flat().findIndex(el => `/gallery/${el}` === currentImage)
-  }
-  // 更新当前展示图片
-  _changeCurrentImage = (index) => {
-    let originPic = this.state.imgOrigin
-    let showIndex = originPic.flat()[index]
-    this.setState({
-      currentImage: `/gallery/${showIndex}`
-    })
   }
 }

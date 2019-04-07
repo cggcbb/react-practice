@@ -70,23 +70,23 @@ export default class Modals extends React.Component {
   render() {
     return (
       <section>
-        <Card title="基础模态框" className="card-wrapper" hoverable={true} size="small">
+        <Card title="基础模态框" className="card-wrapper" hoverable size="small">
           <Button type="primary" onClick={() => this.handleClick('showModal1')}>默认</Button>
           <Button type="primary" onClick={() => this.handleClick('showModal2')}>自定义页脚</Button>
           <Button type="primary" onClick={() => this.handleClick('showModal3')}>顶部水平居中</Button>
           <Button type="primary" onClick={() => this.handleClick('showModal4')}>水平垂直居中</Button>
         </Card>
-        <Card title="禁用按钮" className="card-wrapper" hoverable={true} size="small">
+        <Card title="禁用按钮" className="card-wrapper" hoverable size="small">
           <Button type="danger" onClick={() => this.handleClick('showModal5')}>禁用取消按钮</Button>
           <Button type="danger" onClick={() => this.handleClick('showModal6')}>禁用确定按钮</Button>
         </Card>
-        <Card title="延时自动关闭" className="card-wrapper" hoverable={true} size="small">
+        <Card title="延时自动关闭" className="card-wrapper" hoverable size="small">
           <Button type="primary" onClick={() => this.countDown('showModal7')}>延时自动关闭</Button>
         </Card>
-        <Card title="提交异步关闭按钮" className="card-wrapper" hoverable={true} size="small">
+        <Card title="提交异步关闭按钮" className="card-wrapper" hoverable size="small">
           <Button type="primary" onClick={() => this.handleClick('showModal8')}>提交异步关闭</Button>
         </Card>
-        <Card title="只提供一个按钮用于关闭" className="card-wrapper" hoverable={true} size="small">
+        <Card title="只提供一个按钮用于关闭" className="card-wrapper" hoverable size="small">
           <Button onClick={() => this.handleConfirm('confirm')}>confirm</Button>
           <Button type="primary" onClick={() => this.handleConfirm('info')}>Info</Button>
           <Button onClick={() => this.handleConfirm('success')}>Success</Button>

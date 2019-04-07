@@ -9,6 +9,7 @@ import Notice from 'pages/ui/notice/notice'
 import Message from 'pages/ui/message/message'
 import Tab from 'pages/ui/tab/tab'
 import Gallery from 'pages/ui/gallery/gallery'
+import Carousel from 'pages/ui/carousel/carousel'
 import NoMatch from 'pages/no-match/no-match'
 import React from 'react'
 
@@ -30,6 +31,7 @@ export default class Router extends React.Component {
                     <Route path="/admin/ui/message" component={Message}></Route>
                     <Route path="/admin/ui/tab" component={Tab}></Route>
                     <Route path="/admin/ui/gallery" component={Gallery}></Route>
+                    <Route path="/admin/ui/carousel" component={Carousel}></Route>
                     <Route component={NoMatch} />
                   </Switch>
                 </Admin>

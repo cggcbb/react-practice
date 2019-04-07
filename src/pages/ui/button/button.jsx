@@ -28,14 +28,14 @@ export default class Buttons extends React.Component {
   render() {
     return (
       <section>
-        <Card title="基础按钮" className="card-wrapper" hoverable={true} size="small">
+        <Card title="基础按钮" className="card-wrapper" hoverable size="small">
           <Button type="primary">primary</Button>
           <Button>default</Button>
           <Button type="dashed">dashed</Button>
           <Button type="danger">danger</Button>
           <Button disabled>disabled</Button>
         </Card>
-        <Card title="图形按钮" className="card-wrapper" hoverable={true} size="small">
+        <Card title="图形按钮" className="card-wrapper" hoverable size="small">
           <Button icon="plus">plus</Button>
           <Button icon="edit">edit</Button>
           <Button icon="delete">delete</Button>
@@ -43,7 +43,7 @@ export default class Buttons extends React.Component {
           <Button icon="search" type="primary">搜索</Button>
           <Button icon="download" type="primary">下载</Button>
         </Card>
-        <Card title="Loading按钮" className="card-wrapper" hoverable={true} size="small">
+        <Card title="Loading按钮" className="card-wrapper" hoverable size="small">
           <Button type="primary" loading={this.state.loading}>Loading</Button>
           <Button icon="primary" shape="circle" loading={this.state.loading}></Button>
           <Button loading={this.state.loading}>Loading</Button>
@@ -51,13 +51,13 @@ export default class Buttons extends React.Component {
           <Button type="primary" onClick={this.handleCloseLoading.bind(this)}>关闭 Loading</Button>
           <Button type="primary" onClick={this.handleOpenLoading.bind(this)}>开启 Loading</Button>
         </Card>
-        <Card title="block按钮" className="card-block-wrapper" hoverable={true} size="small">
+        <Card title="block按钮" className="card-block-wrapper" hoverable size="small">
           <Button type="primary" block>primary</Button>
           <Button block>default</Button>
           <Button type="dashed" block>dashed</Button>
           <Button type="danger" block>danger</Button>
         </Card>
-        <Card title="按钮组" className="card-wrapper" hoverable={true} size="small">
+        <Card title="按钮组" className="card-wrapper" hoverable size="small">
           <Button.Group>
             <Button type="primary">
               <Icon type="left" />Go back
@@ -67,7 +67,7 @@ export default class Buttons extends React.Component {
             </Button>
           </Button.Group>
         </Card>
-        <Card title="按钮尺寸" className="card-wrapper" hoverable={true} size="small">
+        <Card title="按钮尺寸" className="card-wrapper" hoverable size="small">
           <Radio.Group value={this.state.size} onChange={this.handleChange.bind(this)}>
             <Radio value="small">小</Radio>
             <Radio value="default">中</Radio>
