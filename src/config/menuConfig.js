@@ -43,6 +43,21 @@ const menuList = [
     ]
   },
   {
+    rootKey: '2',
+    title: '表单',
+    key: '/admin/ui',
+    children: [
+      {
+        title: '注册',
+        key: '/admin/form/register'
+      },
+      {
+        title: '登录',
+        key: '/admin/form/login'
+      }
+    ]
+  },
+  {
     title: '员工管理',
     key: '/admin/user'
   },
@@ -51,7 +66,7 @@ const menuList = [
     key: '/admin/bikeMap'
   },
   {
-    rootKey: '2',
+    rootKey: '3',
     title: '图标',
     key: '/admin/charts',
     children: [
