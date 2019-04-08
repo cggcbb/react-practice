@@ -1,6 +1,8 @@
 import React from 'react'
 import { Card, Form, Modal, Button, Input, Checkbox, Radio, Select, Switch, DatePicker, TimePicker, Upload, Icon, message, InputNumber } from 'antd' 
 
+import './register.less'
+
 class FormRegister extends React.Component {
   state = {
     previewVisible: false,
@@ -45,7 +47,7 @@ class FormRegister extends React.Component {
           address,
           getupTime
         } = values
-        
+
         message.success(`Received values of form: 
           username = ${username}, 
           password = ${password}, 
