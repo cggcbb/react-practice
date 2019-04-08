@@ -45,7 +45,6 @@ const menuList = [
   {
     rootKey: '2',
     title: '表单',
-    key: '/admin/ui',
     children: [
       {
         title: '注册',
@@ -58,6 +57,20 @@ const menuList = [
     ]
   },
   {
+    rootKey: '3',
+    title: '表格',
+    children: [
+      {
+        title: '基础表格',
+        key: '/admin/table/basic'
+      },
+      {
+        title: '高级表格',
+        key: '/admin/table/high'
+      }
+    ]
+  },
+  {
     title: '员工管理',
     key: '/admin/user'
   },
@@ -66,9 +79,8 @@ const menuList = [
     key: '/admin/bikeMap'
   },
   {
-    rootKey: '3',
+    rootKey: '4',
     title: '图标',
-    key: '/admin/charts',
     children: [
       {
         title: '柱状图',
