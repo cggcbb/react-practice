@@ -2,7 +2,7 @@ import './login.less'
 import React from 'react'
 import { Card, Form, Icon, Input, Button, Checkbox, message} from 'antd'
 
-class NormalLoginForm extends React.Component {
+class FormLogin extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault()
     this.props.form.validateFields((err, values) => {
@@ -31,7 +31,7 @@ class NormalLoginForm extends React.Component {
         </Card>
       
         <Card title="水平表单" className="card-wrapper" hoverable size="small">
-          <Form className="login-form">
+          <Form className="login-form" onSubmit={this.handleSubmit}>
             <Form.Item>
               {
                 getFieldDecorator('username', {
@@ -60,14 +60,13 @@ class NormalLoginForm extends React.Component {
               {
                 getFieldDecorator('remember', {
                   valuePropName: 'checked',
-                  initialValue: true,
-                  required: true
+                  initialValue: true
                 })(
                   <Checkbox>记住我</Checkbox>
                 )
               }
               <a className="login-form-forgot" href="">忘记密码</a>
-              <Button onClick={this.handleSubmit} type="primary" htmlType="submit" className="login-form-button">
+              <Button type="primary" htmlType="submit" className="login-form-button">
                 登录
               </Button>
             </Form.Item>
@@ -78,4 +77,4 @@ class NormalLoginForm extends React.Component {
   }
 }
 
-export default Form.create({ name: 'normal_login' })(NormalLoginForm)
+export default Form.create({ name: 'form-login' })(FormLogin)
