@@ -6,6 +6,12 @@ const STATUS_SUCCESS = 200
 const CODE_SUCCESS = 0
 
 export const ajax = (options) => {
+  let loading
+  let { isShowLoading = true } = options
+  if (isShowLoading) {
+    loading = document.getElementById('loadingWrapper')
+    loading.style.display = 'block'
+  }
   const baseURL = 'https://www.easy-mock.com/mock/5cabf67f1a2ff67cf5210f83/manager/mock'
   return new Promise((resolve, reject) => {
     axios({
@@ -15,6 +21,9 @@ export const ajax = (options) => {
       timeout: 5000,
       params: options.params || ''
     }).then(res => {
+      if (loading) {
+        loading.style.display = 'none'
+      }
       if (res.status === STATUS_SUCCESS) {
         if (res.data.code === CODE_SUCCESS) {
           resolve(res.data)

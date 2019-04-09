@@ -1,36 +1,40 @@
 import './basic.less'
 import React from 'react'
-import { Card, Table, Button, message, Modal } from 'antd'
+import { Card, Table, Button, message, Modal, Tag } from 'antd'
 import { ajax } from 'common/js/ajax'
 
 export default class Tables extends React.Component {
   // 动态表格技能字典
   skillConfig =  {
-    1: 'Java',
-    2: 'Javascript',
-    3: 'Python',
-    4: 'C',
-    5: 'C++',
-    6: 'PHP',
-    7: 'Linux',
-    8: 'Ruby',
-    9: 'Go'
+    1: { name: 'Java', tagColor: '#137d43' },
+    2: { name: 'Javascript', tagColor: '#b5003e' },
+    3: { name: 'Python', tagColor: '#007db9'},
+    4: { name: 'C', tagColor: '#c38f00' },
+    5: { name: 'C++', tagColor: '#9300c3' },
+    6: { name: 'PHP', tagColor: '#8a00c3' },
+    7: { name: 'Linux', tagColor: '#213554' },
+    8: { name: 'Ruby', tagColor: '#288594' },
+    9: { name: 'Go', tagColor: '#3677af' },
   }
   state = {
+    // 分页
+    pageNum: 4,
+    pageSize: 10,
+    total: 671,
     // 动态表头
     dynamicColumns: [
-      { title: 'ID', dataIndex: 'id' },
-      { title: '姓名', dataIndex: 'name' },
-      { title: '年龄', dataIndex: 'age' },
-      { title: '邮箱', dataIndex: 'email' },
-      { title: '电话', dataIndex: 'telephone' },
-      { title: "技能", dataIndex: "skill",
+      { title: 'ID', dataIndex: 'id', width: 40, align: 'center' },
+      { title: '姓名', dataIndex: 'name', width: 100, align: 'center' },
+      { title: '年龄', dataIndex: 'age', width: 40, align: 'center' },
+      { title: '邮箱', dataIndex: 'email', width: 200, align: 'center' },
+      { title: '电话', dataIndex: 'telephone', width: 100, align: 'center' },
+      { title: "技能", dataIndex: "skill", width: 100, align: 'center',
         render: (skill) => {
-          return this.skillConfig[skill]
+          return (<Tag color={this.skillConfig[skill].tagColor}>{this.skillConfig[skill].name}</Tag>)
         }
       },
-      { title: '评价', dataIndex: 'assess' },
-      { title: '爱好', dataIndex: 'interest' }
+      { title: '等级', dataIndex: 'level', width: 100, align: 'center' },
+      { title: '爱好', dataIndex: 'interest', width: 200, align: 'center' }
     ],
     // 静态表头
     staticColums: [
@@ -98,7 +102,7 @@ export default class Tables extends React.Component {
       selectedItem: record
     }, () => {
       const { name, telephone, skill } = this.state.selectedItem
-      message.success(`姓名：${name} ─> 电话：${telephone} ─> 技能：${this.skillConfig[skill]}`)
+      message.success(`姓名：${name} ─> 电话：${telephone} ─> 技能：${this.skillConfig[skill].name}`)
     })
   }
   // 复选表格, 点击每行
@@ -158,7 +162,7 @@ export default class Tables extends React.Component {
             dataSource={this.state.staticDataSource}
           />
         </Card>
-        <Card title="动态数据渲染单选表单">
+        <Card title="动态单选表格-Mock">
           <Table
             bordered
             rowKey={result => result.id - 1}
@@ -175,7 +179,7 @@ export default class Tables extends React.Component {
             }}
           />
         </Card>
-        <Card title="动态数据渲染复选表单">
+        <Card title="动态复选表格-Mock">
           <div className="table-checkbox-delete">
             <Button onClick={this.handleCheckboxDelete}>删除</Button>
           </div>
@@ -191,6 +195,29 @@ export default class Tables extends React.Component {
                 onClick: () => {
                   this.handleCheckboxOnRowClick(result, index)  
                 }
+              }
+            }}
+            pagination={{
+              current: this.state.pageNum,
+              pageSize: this.state.pageSize,
+              total: this.state.total,
+              showTotal: () => {
+                return `共${this.state.total}条, ${Math.ceil(this.state.total / this.state.pageSize)}页`
+              },
+              onChange: (current) => {
+                this.setState({
+                  pageNum: current
+                })
+                this._getDynamicTable()
+              },
+              showQuickJumper: true,
+              showSizeChanger: true,
+              pageSizeOptions: ['10', '15', '20', '25', '30', '35', '40'],
+              hideOnSinglePage: true,
+              onShowSizeChange: (current, size) => {
+                this.setState({
+                  pageSize: size
+                })
               }
             }}
           />
