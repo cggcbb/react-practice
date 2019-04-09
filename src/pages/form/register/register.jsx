@@ -144,7 +144,7 @@ class FormRegister extends React.Component {
                     <Select.Option value="1">Java</Select.Option>
                     <Select.Option value="2">Javascript</Select.Option>
                     <Select.Option value="3">Python</Select.Option>
-                    <Select.Option value="4">C+</Select.Option>
+                    <Select.Option value="4">C</Select.Option>
                     <Select.Option value="5">C++</Select.Option>
                     <Select.Option value="6">PHP</Select.Option>
                   </Select>
