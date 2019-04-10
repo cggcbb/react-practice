@@ -86,7 +86,7 @@ export default class Tables extends React.Component {
   }
   // 动态获取表格数据
   _getDynamicTable = () => {
-    ajax({ url: '/table/list' }).then(res => {
+    ajax({ url: '/table/basic/list' }).then(res => {
       res.result.map(item => item.interest = Object.values(item.interest).join('，'))
       this.setState({
         dynamicColumns: this.state.dynamicColumns,
@@ -154,15 +154,17 @@ export default class Tables extends React.Component {
     }
     return (
       <section>
-        <Card title="基础表格">
+        <Card title="基础表格" className="card-wrapper" hoverable size="small">
           <Table
             bordered
             rowKey="id"
             columns={this.state.staticColums}
             dataSource={this.state.staticDataSource}
+            pagination={false}
+            size="middle"
           />
         </Card>
-        <Card title="动态单选表格-Mock">
+        <Card title="动态单选表格-Mock" className="card-wrapper" hoverable size="small">
           <Table
             bordered
             rowKey={result => result.id - 1}
@@ -177,9 +179,11 @@ export default class Tables extends React.Component {
                 }
               }
             }}
+            pagination={false}
+            size="middle"
           />
         </Card>
-        <Card title="动态复选表格-Mock">
+        <Card title="动态复选表格-Mock" className="card-wrapper" hoverable size="small">
           <div className="table-checkbox-delete">
             <Button onClick={this.handleCheckboxDelete}>删除</Button>
           </div>
@@ -220,6 +224,7 @@ export default class Tables extends React.Component {
                 })
               }
             }}
+            size="middle"
           />
         </Card>
       </section>
