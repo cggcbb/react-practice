@@ -38,14 +38,14 @@ export default class Tables extends React.Component {
     ],
     // 静态表头
     staticColums: [
-      { title: 'ID', dataIndex: 'id' },
-      { title: '姓名', dataIndex: 'name' },
-      { title: '性别', dataIndex: 'sex' },
-      { title: '状态', dataIndex: 'state' },
-      { title: '生日', dataIndex: 'birthday' },
-      { title: '爱好', dataIndex: 'interest' },
-      { title: '创建时间', dataIndex: 'createTime' },
-      { title: '地址', dataIndex: 'address' }
+      { title: 'ID', dataIndex: 'id', align: 'center' },
+      { title: '姓名', dataIndex: 'name', align: 'center' },
+      { title: '性别', dataIndex: 'sex', align: 'center' },
+      { title: '状态', dataIndex: 'state', align: 'center' },
+      { title: '生日', dataIndex: 'birthday', align: 'center' },
+      { title: '爱好', dataIndex: 'interest', align: 'center' },
+      { title: '创建时间', dataIndex: 'createTime', align: 'center' },
+      { title: '地址', dataIndex: 'address', align: 'center' }
     ],
     // 静态表数据
     staticDataSource: [
