@@ -15,6 +15,7 @@ import FormRegister from 'pages/form/register/register'
 import BasicTable from 'pages/table/basic/basic'
 import HighTable from 'pages/table/high/high'
 import City from 'pages/city/city'
+import Order from 'pages/order/order'
 import NoMatch from 'pages/no-match/no-match'
 import React from 'react'
 
@@ -42,6 +43,7 @@ export default class Router extends React.Component {
                     <Route path="/admin/table/basic" component={BasicTable}></Route>
                     <Route path="/admin/table/high" component={HighTable}></Route>
                     <Route path="/admin/city" component={City}></Route>
+                    <Route path="/admin/order" component={Order}></Route>
                     <Route component={NoMatch} />
                   </Switch>
                 </Admin>

@@ -97,6 +97,10 @@ const menuList = [
     ]
   },
   {
+    title: '订单管理',
+    key: '/admin/order'
+  },
+  {
     title: '富文本',
     key: '/admin/rich'
   },
