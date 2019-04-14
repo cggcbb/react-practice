@@ -1,6 +1,7 @@
 @import '../../style/default.less';
 
 .header {
+  width: 100%;
   background-color: @color-white;
   .header-user-info {
     height: 60px;
@@ -34,6 +35,16 @@
       span ~ span {
         margin-left: 20px;
       }
+    }
+  }
+}
+
+.second-page {
+  .header {
+    background: @color-primary;
+    color: @color-white;
+    a.logout {
+      color: @color-white;
     }
   }
 }

@@ -21,6 +21,7 @@ export default class Header extends React.Component {
     this._getChengduWeather();
   }
   render() {
+    let { type } = this.props
     return (
       <header className="header">
         <Row className="header-user-info">
@@ -29,17 +30,21 @@ export default class Header extends React.Component {
             <a href="#" onClick={this.logout.bind(this)} className="logout">退出</a>
           </Col>
         </Row>
-        <Row className="breadcrumb">
-          <Col span={4} className="breadcrumb-title">
-            首页
-          </Col>
-          <Col span={20} className="weather">
-            <span className="date">{this.state.sysTime}</span>
-            <span className="city">{this.state.city}</span>
-            <span className="weather-detail">{this.state.weather}</span>
-            <span className="temperature">{this.state.temperature}℃</span>
-          </Col>
-        </Row>
+        {
+          type
+            ? '' 
+            : <Row className="breadcrumb">
+                <Col span={4} className="breadcrumb-title">
+                  首页
+                </Col>
+                <Col span={20} className="weather">
+                  <span className="date">{this.state.sysTime}</span>
+                  <span className="city">{this.state.city}</span>
+                  <span className="weather-detail">{this.state.weather}</span>
+                  <span className="temperature">{this.state.temperature}℃</span>
+                </Col>
+              </Row>
+        }
       </header>
     )
   }
