@@ -1,8 +1,7 @@
 import './detail.less'
 import React from 'react'
-import { Card, Button, Table, Select, Form, DatePicker, Tag, Badge, message, Modal } from 'antd'
+import { Card } from 'antd'
 import { ajax } from 'common/js/ajax'
-import { AST_NameMapping } from 'terser';
 
 export default class OrderDetail extends React.Component {
   state = {}
@@ -27,12 +26,44 @@ export default class OrderDetail extends React.Component {
     this._initMap()
     this._drawBikeRoute()
     this._drawArea()
+    this._drawIcon()
+  }
+  // 绘制 起点 终点 图标
+  _drawIcon = () => {
+    let track = this.state.detailInfo.position_list
+    // 创建start icon
+    let startIcon = new window.AMap.Icon({
+        size: new window.AMap.Size(25, 34), // // 图标尺寸
+        image: '//a.amap.com/jsapi_demos/static/demo-center/icons/dir-marker.png', // 图标的取图地址
+        imageSize: new window.AMap.Size(135, 40), // 图标所用图片大小
+        imageOffset: new window.AMap.Pixel(-9, -3) // 图标取图偏移量
+    })
+    // 将 icon 传入 marker
+    let startMarker = new window.AMap.Marker({
+        position: new window.AMap.LngLat(track[0].longitude, track[0].latitude),
+        icon: startIcon,
+        offset: new window.AMap.Pixel(-13, -30)
+    })
+    // 创建end icon
+    let endIcon = new window.AMap.Icon({
+        size: new window.AMap.Size(25, 34),
+        image: '//a.amap.com/jsapi_demos/static/demo-center/icons/dir-marker.png',
+        imageSize: new window.AMap.Size(135, 40),
+        imageOffset: new window.AMap.Pixel(-95, -3)
+    })
+    // 将 icon 传入 marker
+    let endMarker = new window.AMap.Marker({
+        position: new window.AMap.LngLat(track[track.length - 1].longitude, track[track.length - 1].latitude),
+        icon: endIcon,
+        offset: new window.AMap.Pixel(-13, -30)
+    })
+    // 将 markers 添加到地图
+    this.map.add([startMarker, endMarker])
   }
   // 初始化地图
   _initMap = () => {
     let track = this.state.detailInfo.position_list
     this.map = new window.AMap.Map('orderDetailMap', {
-      zoom: 14,
       center: [track[0].longitude, track[0].latitude] // 中心点坐标
     })
   }
@@ -42,7 +73,7 @@ export default class OrderDetail extends React.Component {
     let lineArr = track.map(item => {
       return [item.longitude, item.latitude]
     })
-    var polyline = new window.AMap.Polyline({
+    let polyline = new window.AMap.Polyline({
       path: lineArr,
       strokeColor: '#9019fd',
       strokeWeight: 3,
