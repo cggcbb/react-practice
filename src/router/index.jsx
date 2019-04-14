@@ -16,6 +16,8 @@ import BasicTable from 'pages/table/basic/basic'
 import HighTable from 'pages/table/high/high'
 import City from 'pages/city/city'
 import Order from 'pages/order/order'
+import OrderDetail from 'pages/order/detail'
+import Common from 'pages/common/common'
 import NoMatch from 'pages/no-match/no-match'
 import React from 'react'
 
@@ -49,7 +51,11 @@ export default class Router extends React.Component {
                 </Admin>
               )
             }}></Route>
-            <Route path="/order/detail" component={Login} />
+            <Route path="/common" render={() => 
+              <Common>
+                <Route path="/common/order/detail/:orderNo" component={OrderDetail}/>
+              </Common>
+            }/>
             <Route component={NoMatch} />
           </Switch>
         </App>
