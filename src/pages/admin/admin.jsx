@@ -1,5 +1,4 @@
-
-import { Row, Col } from 'antd';
+import { Row, Col } from 'antd'
 import Footer from 'components/footer/footer'
 import Header from 'components/header/header'
 import Nav from 'components/nav/nav'
@@ -9,7 +8,7 @@ import 'style/common.less'
 
 // import Home from 'pages/home'
 
-class App extends React.Component {
+class Admin extends React.Component {
   render() {
     return (
       <Row className="container">
@@ -24,8 +23,8 @@ class App extends React.Component {
           <Footer></Footer>
         </Col>
       </Row>
-    );
+    )
   }
 }
 
-export default App
+export default Admin
