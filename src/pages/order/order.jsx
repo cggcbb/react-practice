@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, Button, Table, Select, Form, DatePicker, Tag, Badge, message } from 'antd'
+import { Card, Button, Table, Select, Form, DatePicker, Tag, Badge, message, Modal } from 'antd'
 import { ajax } from 'common/js/ajax'
 
 export default class Order extends React.Component {
@@ -19,7 +19,7 @@ export default class Order extends React.Component {
     { title: '手机号码', dataIndex: 'telephone', width: 180, align: 'center' },
     { title: "里程", dataIndex: "distance", width: 180, align: 'center',
       render: (distance) => {
-        return `${(distance / 1000).toFixed(1)}km`
+        return `${(distance / 1000).toFixed(1)}公里`
       }
     },
     { title: '行驶时长', dataIndex: 'use_time', width: 180, align: 'center',
@@ -56,7 +56,15 @@ export default class Order extends React.Component {
   }
   // 订单详情
   openOrderDetail = () => {
-
+    let orderInfo = this.state.selectedItem
+    if (!orderInfo) {
+      Modal.warn({
+        title: '信息',
+        content: '请选择一条订单进行查看 ~~~'
+      })
+      return
+    }
+    window.open(`/#/common/order/detail/${orderInfo.order_no}`, '_blank')
   }
   // 结束订单
   endOrder = () => {
@@ -64,6 +72,7 @@ export default class Order extends React.Component {
   }
   handleOnRowClick = (record, index) => {
     let selectedRowKeys = [index]
+    console.log(selectedRowKeys)
     this.setState({
       selectedRowKeys,
       selectedItem: record
@@ -116,63 +125,65 @@ class FilterForm extends React.Component {
   render() {
     const { getFieldDecorator } = this.props.form
     return (
-      <Form layout="inline">
-        <Form.Item label="城市">
-          {
-            getFieldDecorator('city_id')(
-              <Select style={{width: 120, marginRight: 30}} placeholder="全部">
-                <Select.Option value=" ">全部</Select.Option>
-                <Select.Option value="1">北京</Select.Option>
-                <Select.Option value="2">上海</Select.Option>
-                <Select.Option value="3">广州</Select.Option>
-                <Select.Option value="4">深圳</Select.Option>
-                <Select.Option value="5">杭州</Select.Option>
-                <Select.Option value="6">成都</Select.Option>
-              </Select>
-            )
-          }
-        </Form.Item>
-        <Form.Item>
-          {
-            getFieldDecorator('start_time')(
-              <DatePicker placeholder="选择开始时间"></DatePicker>
-            )
-          }
-        </Form.Item>
-        <Form.Item>
-          {
-            getFieldDecorator('end_time')(
-              <DatePicker placeholder="选择结束时间"></DatePicker>
-            )
-          }
-        </Form.Item>
-        <Form.Item label="订单状态">
-          {
-            getFieldDecorator('order_status')(
-              <Select style={{width: 120}} placeholder="全部">
-                <Select.Option value=" ">全部</Select.Option>
-                <Select.Option value="1">进行中</Select.Option>
-                <Select.Option value="2">行程结束</Select.Option>
-              </Select>
-            )
-          }
-        </Form.Item>
-        <Form.Item label="类型">
-          {
-            getFieldDecorator('type')(
-              <Select style={{width: 120, marginRight: 30}} placeholder="全部">
-                <Select.Option value=" ">全部</Select.Option>
-                <Select.Option value="1">包月</Select.Option>
-                <Select.Option value="2">计次</Select.Option>
-              </Select>
-            )
-          }
-        </Form.Item>
-        <Form.Item>
-          <Button type="primary">查询</Button>
-          <Button>重置</Button>
-        </Form.Item>
-      </Form>
+      <section>
+        <Form layout="inline">
+          <Form.Item label="城市">
+            {
+              getFieldDecorator('city_id')(
+                <Select style={{width: 120, marginRight: 30}} placeholder="全部">
+                  <Select.Option value=" ">全部</Select.Option>
+                  <Select.Option value="1">北京</Select.Option>
+                  <Select.Option value="2">上海</Select.Option>
+                  <Select.Option value="3">广州</Select.Option>
+                  <Select.Option value="4">深圳</Select.Option>
+                  <Select.Option value="5">杭州</Select.Option>
+                  <Select.Option value="6">成都</Select.Option>
+                </Select>
+              )
+            }
+          </Form.Item>
+          <Form.Item>
+            {
+              getFieldDecorator('start_time')(
+                <DatePicker placeholder="选择开始时间"></DatePicker>
+              )
+            }
+          </Form.Item>
+          <Form.Item>
+            {
+              getFieldDecorator('end_time')(
+                <DatePicker placeholder="选择结束时间"></DatePicker>
+              )
+            }
+          </Form.Item>
+          <Form.Item label="订单状态">
+            {
+              getFieldDecorator('order_status')(
+                <Select style={{width: 120}} placeholder="全部">
+                  <Select.Option value=" ">全部</Select.Option>
+                  <Select.Option value="1">进行中</Select.Option>
+                  <Select.Option value="2">行程结束</Select.Option>
+                </Select>
+              )
+            }
+          </Form.Item>
+          <Form.Item label="类型">
+            {
+              getFieldDecorator('type')(
+                <Select style={{width: 120, marginRight: 30}} placeholder="全部">
+                  <Select.Option value=" ">全部</Select.Option>
+                  <Select.Option value="1">包月</Select.Option>
+                  <Select.Option value="2">计次</Select.Option>
+                </Select>
+              )
+            }
+          </Form.Item>
+          <Form.Item>
+            <Button type="primary">查询</Button>
+            <Button>重置</Button>
+          </Form.Item>
+        </Form>
+      </section>
     )
   }
 }
