@@ -72,7 +72,6 @@ export default class Order extends React.Component {
   }
   handleOnRowClick = (record, index) => {
     let selectedRowKeys = [index]
-    console.log(selectedRowKeys)
     this.setState({
       selectedRowKeys,
       selectedItem: record
@@ -92,7 +91,7 @@ export default class Order extends React.Component {
         <Card className="card-wrapper"hoverable size="middle">
           <FilterForm/>
         </Card>
-        <Card className="card-wrapper open-city-wrapper" hoverable size="small">
+        <Card className="card-wrapper open-city-wrapper">
           <Button type="primary" onClick={this.openOrderDetail}>订单详情</Button>
           <Button type="primary" onClick={this.endOrder}>结束订单</Button>
         </Card>
