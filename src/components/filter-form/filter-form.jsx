@@ -8,6 +8,9 @@ class FilterForm extends React.Component {
     const params = this.props.form.getFieldsValue()
     this.props.filterSubmit(params)
   }
+  handleFilterReset = () => {
+    this.props.form.resetFields()
+  }
   // 初始化baseForm
   initBaseForm = () => {
     const { getFieldDecorator } = this.props.form
