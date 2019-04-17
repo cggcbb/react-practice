@@ -21,6 +21,7 @@ export default class Tables extends React.Component {
     pageNum: 4,
     pageSize: 10,
     total: 671,
+    selectedRows: [],
     // 动态表头
     dynamicColumns: [
       { title: 'ID', dataIndex: 'id', width: 40, align: 'center' },
@@ -111,16 +112,26 @@ export default class Tables extends React.Component {
     if (!selectedCheckboxRowKeys.includes(index)) {
       selectedCheckboxRowKeys.unshift(index)
       selectedRows.unshift(record)
-      this.setState({
-        selectedCheckboxRowKeys,
-        selectedRows
-      })
+    } else {
+      selectedCheckboxRowKeys = selectedCheckboxRowKeys.filter(val => val != index)
+      selectedRows = selectedRows.filter(val => val.id != index + 1)
     }
+    this.setState({
+      selectedCheckboxRowKeys,
+      selectedRows
+    })
   }
   // 复选表格删除
   handleCheckboxDelete = () => {
     let { selectedRows } = this.state
     let deleteIds = selectedRows.map(item => item.id)
+    if (!deleteIds.length) {
+      Modal.warn({
+        title: '信息',
+        content: '请至少选择一条数据进行删除'
+      })
+      return
+    }
     Modal.confirm({
       title: '删除提示',
       content: `删除后将不能恢复，您确认删除这些数据吗？id = [${deleteIds.join(',')}]`,
