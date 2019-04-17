@@ -18,14 +18,14 @@ class FilterForm extends React.Component {
     const result = []
     if (formConfig && formConfig.length) {
       formConfig.forEach(item => {
-        const { type, label, field, initailValue = '', placeholder = '', style, list, format } = item
+        const { type, label, field, initialValue = '', placeholder = '', style, list, format } = item
         switch (type) {
           case 'INPUT':
             const input = 
               <FormItem label={label} key={field}>
                 {
                   getFieldDecorator([field], {
-                    initailValue
+                    initialValue
                   })(
                    <Input type="text" placeholder={placeholder}/>
                   )
@@ -38,7 +38,7 @@ class FilterForm extends React.Component {
               <FormItem label={label} key={field}>
                 {
                   getFieldDecorator([field], {
-                    initailValue
+                    initialValue
                   })(
                     <Select style={style} placeholder={placeholder}>
                       {this._getOptionList(list)}
@@ -54,7 +54,7 @@ class FilterForm extends React.Component {
                 {
                   getFieldDecorator([field], {
                     valuePropName: 'checked',
-                    initailValue
+                    initialValue
                   })(
                     <Checkbox>
                       {label}

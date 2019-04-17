@@ -116,7 +116,7 @@ export default class Order extends React.Component {
       label: '城市',
       field: 'city_id',
       style: { width: 120, marginRight: 30 },
-      initailValue: 1,
+      initialValue: '1',
       placeholder: '全部',
       list: [
         { value: ' ', name: '全部' },
@@ -140,7 +140,7 @@ export default class Order extends React.Component {
       label: '订单状态',
       field: 'order_status',
       style: { width: 120, marginRight: 30 },
-      initailValue: 1,
+      initialValue: '1',
       placeholder: '全部',
       list: [
         { value: ' ', name: '全部' },
@@ -153,7 +153,7 @@ export default class Order extends React.Component {
       label: '类型',
       field: 'type',
       style: { width: 120, marginRight: 30 },
-      initailValue: 1,
+      initialValue: '1',
       placeholder: '全部',
       list: [
         { value: ' ', name: '全部' },

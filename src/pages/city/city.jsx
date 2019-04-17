@@ -1,5 +1,6 @@
 import './city.less'
 import React from 'react'
+import FilterForm from 'components/filter-form/filter-form'
 import { Card, Button, Form, Select, Table, Modal, Radio, notification, Tag, Badge } from 'antd'
 import { ajax } from 'common/js/ajax'
 import { optimizeCurrentTime } from 'common/js/utils'
@@ -30,8 +31,8 @@ export default class City extends React.Component {
     this._getCity()
   }
   // 获取city列表
-  _getCity() {
-    ajax({ url: '/city/list' }).then(res => {
+  _getCity(params = null) {
+    ajax({ url: '/city/list', params }).then(res => {
       this.setState({
         dataSource: res.result
       })
@@ -66,6 +67,11 @@ export default class City extends React.Component {
     })
     this._getCity()
   }
+  // 搜索栏 查询按钮点击事件
+  handleFilterSubmit = (params) => {
+    this.params = params
+    this._getCity(params)
+  }
   // 表头渲染
   columns = [
     { title: 'ID', dataIndex: 'id', width: 80, align: 'center' },
@@ -92,11 +98,65 @@ export default class City extends React.Component {
     },
     { title: '操作员', dataIndex: 'operation_person', width: 200, align: 'center' }
   ]
+  filterConfig = [
+    {
+      type: 'SELECT',
+      label: '城市',
+      field: 'city_id',
+      style: { width: 120, marginRight: 30 },
+      initialValue: '1',
+      list: [
+        { value: ' ', name: '全部' },
+        { value: '1', name: '北京' },
+        { value: '2', name: '上海' },
+        { value: '3', name: '广州' },
+        { value: '4', name: '深圳' },
+        { value: '5', name: '杭州' },
+        { value: '6', name: '成都' }
+      ]
+    },
+    {
+      type: 'SELELCT',
+      label: '运营模式',
+      field: 'operate_mode',
+      initialValue: '1',
+      style: { width: 120, marginRight: 30 },
+      list: [
+        { value: ' ', name: '全部' },
+        { value: '1', name: '自营' },
+        { value: '2', name: '加盟' }
+      ]
+    },
+    {
+      type: 'SELECT',
+      label: '用车模式',
+      field: 'use_mode',
+      style: { width: 120, marginRight: 30 },
+      initialValue: '1',
+      list: [
+        { value: ' ', name: '全部' },
+        { value: '1', name: '禁停区' },
+        { value: '2', name: '停车点' }
+      ]
+    },
+    {
+      type: 'SELECT',
+      label: '授权状态',
+      field: 'auth_state',
+      style: { width: 120, marginRight: 30 },
+      initialValue: '1',
+      list: [
+        { value: ' ', name: '全部' },
+        { value: '1', name: '已授权' },
+        { value: '2', name: '未授权' }
+      ]
+    }
+  ]
   render() {
     return (
       <section>
         <Card className="card-wrapper" hoverable size="middle">
-          <FilterForm/>
+          <FilterForm formConfig={this.filterConfig} filterSubmit={this.handleFilterSubmit}/>
         </Card>
         <Card className="card-wrapper open-city-wrapper" hoverable size="small">
           <Button type="primary" onClick={this.handleOpenCity}>开通城市</Button>
@@ -125,70 +185,6 @@ export default class City extends React.Component {
     )
   }
 }
-// 搜索form
-class FilterForm extends React.Component {
-  render() {
-    const { getFieldDecorator } = this.props.form
-    return (
-      <Form layout="inline">
-        <Form.Item label="城市">
-          {
-            getFieldDecorator('city_id')(
-              <Select style={{width: 120, marginRight: 30}} placeholder="全部">
-                <Select.Option value=" ">全部</Select.Option>
-                <Select.Option value="1">北京</Select.Option>
-                <Select.Option value="2">上海</Select.Option>
-                <Select.Option value="3">广州</Select.Option>
-                <Select.Option value="4">深圳</Select.Option>
-                <Select.Option value="5">杭州</Select.Option>
-                <Select.Option value="6">成都</Select.Option>
-              </Select>
-            )
-          }
-        </Form.Item>
-        <Form.Item label="运营模式">
-          {
-            getFieldDecorator('operate_mode')(
-              <Select style={{width: 120, marginRight: 30}} placeholder="全部">
-                <Select.Option value=" ">全部</Select.Option>
-                <Select.Option value="1">自营</Select.Option>
-                <Select.Option value="2">加盟</Select.Option>
-              </Select>
-            )
-          }
-        </Form.Item>
-        <Form.Item label="用车模式">
-          {
-            getFieldDecorator('use_mode')(
-              <Select style={{width: 120, marginRight: 30}} placeholder="全部">
-                <Select.Option value=" ">全部</Select.Option>
-                <Select.Option value="1">禁停区</Select.Option>
-                <Select.Option value="2">停车点</Select.Option>
-              </Select>
-            )
-          }
-        </Form.Item>
-        <Form.Item label="授权状态">
-          {
-            getFieldDecorator('auth_state')(
-              <Select style={{width: 120, marginRight: 30}} placeholder="全部">
-                <Select.Option value=" ">全部</Select.Option>
-                <Select.Option value="1">已授权</Select.Option>
-                <Select.Option value="2">未授权</Select.Option>
-              </Select>
-            )
-          }
-        </Form.Item>
-        <Form.Item>
-          <Button type="primary">查询</Button>
-          <Button>重置</Button>
-        </Form.Item>
-      </Form>
-    )
-  }
-}
-FilterForm = Form.create({ name: 'FilterForm' })(FilterForm)
-
 // 开通城市Modal
 class OpenCityForm extends React.Component {
   render() {
