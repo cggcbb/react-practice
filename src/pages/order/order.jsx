@@ -1,5 +1,6 @@
 import React from 'react'
-import { Card, Button, Table, Select, Form, DatePicker, Tag, Badge, message, Modal } from 'antd'
+import FilterForm from 'components/filter-form/filter-form'
+import { Card, Button, Table, Tag, Badge, message, Modal } from 'antd'
 import { ajax } from 'common/js/ajax'
 
 export default class Order extends React.Component {
@@ -46,9 +47,9 @@ export default class Order extends React.Component {
   componentWillMount() {
     this._getOrderList()
   }
-  // 获取city列表
-  _getOrderList() {
-    ajax({ url: '/order/list' }).then(res => {
+  // 获取order列表
+  _getOrderList(params = null) {
+    ajax({ url: '/order/list', params }).then(res => {
       this.setState({
         dataSource: res.result
       })
@@ -64,22 +65,103 @@ export default class Order extends React.Component {
       })
       return
     }
+    // 开启新页面
     window.open(`/#/common/order/detail/${orderInfo.order_no}`, '_blank')
   }
   // 结束订单
   endOrder = () => {
-
+    let orderInfo = this.state.selectedItem
+    if (!orderInfo) {
+      Modal.warn({
+        title: '信息',
+        content: '请选择一条订单进行结束 ~~~'
+      })
+      return
+    }
+    Modal.confirm({
+      title: '信息',
+      content: `确认结束订单编号【${orderInfo.order_no}】的订单？`,
+      onOk: () => {
+        message.success('结束订单成功！')
+        this._getOrderList()
+        this._clearSelected()
+      }
+    })
   }
+  // 点击表格每行
   handleOnRowClick = (record, index) => {
     let selectedRowKeys = [index]
     this.setState({
       selectedRowKeys,
       selectedItem: record
-    }, () => {
-      const { order_no, bike_no, user_name, telephone, user_pay } = this.state.selectedItem
-      message.success(`订单编号：${order_no} ─> 车辆编号：${bike_no} ─> 姓名：${user_name} ─> 电话：${telephone} ─> 实付金额：${user_pay}`)
     })
   }
+  // 搜索栏 查询按钮点击事件
+  handleFilterSubmit = (params) => {
+    this.params = params
+    this._getOrderList(params)
+    this._clearSelected()
+  }
+  // 重置 selectedRowKeys 和 selectedItem
+  _clearSelected = () => {
+    this.setState({
+      selectedRowKeys: [],
+      selectedItem: null
+    })
+  }
+  // 搜索表单配置
+  filterConfig = [
+    {
+      type: 'SELECT',
+      label: '城市',
+      field: 'city_id',
+      style: { width: 120, marginRight: 30 },
+      initailValue: 1,
+      placeholder: '全部',
+      list: [
+        { value: ' ', name: '全部' },
+        { value: '1', name: '北京' },
+        { value: '2', name: '上海' },
+        { value: '3', name: '广州' },
+        { value: '4', name: '深圳' },
+        { value: '5', name: '杭州' },
+        { value: '6', name: '成都' }
+      ]
+    },
+    {
+      type: 'DATEPICKER', // 日期时间控件
+      format: 'YYYY-MM-DD',
+      style: { marginRight: 30 },
+      placeholder: ['选择开始时间', '选择结束时间'],
+      field: ['begin_time', 'end_time']
+    },
+    {
+      type: 'SELECT',
+      label: '订单状态',
+      field: 'order_status',
+      style: { width: 120, marginRight: 30 },
+      initailValue: 1,
+      placeholder: '全部',
+      list: [
+        { value: ' ', name: '全部' },
+        { value: '1', name: '进行中' },
+        { value: '2', name: '行程结束' }
+      ]
+    },
+    {
+      type: 'SELECT',
+      label: '类型',
+      field: 'type',
+      style: { width: 120, marginRight: 30 },
+      initailValue: 1,
+      placeholder: '全部',
+      list: [
+        { value: ' ', name: '全部' },
+        { value: '1', name: '包月' },
+        { value: '2', name: '计次' }
+      ]
+    }
+  ]
   render() {
     // 单选rowSelection
     const rowSelection = {
@@ -89,7 +171,7 @@ export default class Order extends React.Component {
     return (
       <section>
         <Card className="card-wrapper"hoverable size="middle">
-          <FilterForm/>
+          <FilterForm formConfig={this.filterConfig} filterSubmit={this.handleFilterSubmit}/>
         </Card>
         <Card className="card-wrapper open-city-wrapper">
           <Button type="primary" onClick={this.openOrderDetail}>订单详情</Button>
@@ -120,70 +202,3 @@ export default class Order extends React.Component {
     )
   }
 }
-class FilterForm extends React.Component {
-  render() {
-    const { getFieldDecorator } = this.props.form
-    return (
-      <section>
-        <Form layout="inline">
-          <Form.Item label="城市">
-            {
-              getFieldDecorator('city_id')(
-                <Select style={{width: 120, marginRight: 30}} placeholder="全部">
-                  <Select.Option value=" ">全部</Select.Option>
-                  <Select.Option value="1">北京</Select.Option>
-                  <Select.Option value="2">上海</Select.Option>
-                  <Select.Option value="3">广州</Select.Option>
-                  <Select.Option value="4">深圳</Select.Option>
-                  <Select.Option value="5">杭州</Select.Option>
-                  <Select.Option value="6">成都</Select.Option>
-                </Select>
-              )
-            }
-          </Form.Item>
-          <Form.Item>
-            {
-              getFieldDecorator('start_time')(
-                <DatePicker placeholder="选择开始时间"></DatePicker>
-              )
-            }
-          </Form.Item>
-          <Form.Item>
-            {
-              getFieldDecorator('end_time')(
-                <DatePicker placeholder="选择结束时间"></DatePicker>
-              )
-            }
-          </Form.Item>
-          <Form.Item label="订单状态">
-            {
-              getFieldDecorator('order_status')(
-                <Select style={{width: 120}} placeholder="全部">
-                  <Select.Option value=" ">全部</Select.Option>
-                  <Select.Option value="1">进行中</Select.Option>
-                  <Select.Option value="2">行程结束</Select.Option>
-                </Select>
-              )
-            }
-          </Form.Item>
-          <Form.Item label="类型">
-            {
-              getFieldDecorator('type')(
-                <Select style={{width: 120, marginRight: 30}} placeholder="全部">
-                  <Select.Option value=" ">全部</Select.Option>
-                  <Select.Option value="1">包月</Select.Option>
-                  <Select.Option value="2">计次</Select.Option>
-                </Select>
-              )
-            }
-          </Form.Item>
-          <Form.Item>
-            <Button type="primary">查询</Button>
-            <Button>重置</Button>
-          </Form.Item>
-        </Form>
-      </section>
-    )
-  }
-}
-FilterForm = Form.create({ name: 'FilterForm' })(FilterForm)
