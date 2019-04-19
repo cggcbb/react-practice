@@ -19,6 +19,7 @@ import Order from 'pages/order/order'
 import OrderDetail from 'pages/order/detail'
 import Common from 'pages/common/common'
 import BikeMap from 'pages/bike-map/bike-map'
+import User from 'pages/user/user'
 import NoMatch from 'pages/no-match/no-match'
 import React from 'react'
 
@@ -48,6 +49,7 @@ export default class Router extends React.Component {
                     <Route path="/admin/city" component={City}></Route>
                     <Route path="/admin/order" component={Order}></Route>
                     <Route path="/admin/bikeMap" component={BikeMap}></Route>
+                    <Route path="/admin/user" component={User}></Route>
                     <Route component={NoMatch} />
                   </Switch>
                 </Admin>

@@ -55,7 +55,11 @@ export default class Tables extends React.Component {
         return (<Tag color={this.skillConfig[skill].tagColor}>{this.skillConfig[skill].name}</Tag>)
       }
     },
-    { title: '等级', dataIndex: 'level', width: 200, align: 'center' },
+    { title: '等级', dataIndex: 'level', width: 200, align: 'center',
+      sorter: (a, b) => {
+        return a.level.length - b.level.length
+      }
+    },
     { title: '爱好', dataIndex: 'interest', width: 200, align: 'center' }
   ]
   // 有Badge, options的表格
