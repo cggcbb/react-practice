@@ -84,6 +84,17 @@ class FilterForm extends React.Component {
             result.push(startTime)
             result.push(endTime)
             break
+          case 'SIMPLE-DATEPICKER':
+            const simpleTime = 
+              <FormItem key={field} label={label}>
+                {
+                  getFieldDecorator([field])(
+                    <DatePicker placeholder={placeholder} format={format}></DatePicker>
+                  )
+                }
+              </FormItem>
+            result.push(simpleTime)
+            break
           default:
         }
       })

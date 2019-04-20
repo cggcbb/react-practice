@@ -71,14 +71,6 @@ const menuList = [
     ]
   },
   {
-    title: '员工管理',
-    key: '/admin/user'
-  },
-  {
-    title: '车辆地图',
-    key: '/admin/bikeMap'
-  },
-  {
     rootKey: '4',
     title: '图标',
     children: [
@@ -101,12 +93,20 @@ const menuList = [
     key: '/admin/order'
   },
   {
-    title: '富文本',
-    key: '/admin/rich'
+    title: '员工管理',
+    key: '/admin/user'
   },
   {
     title: '城市管理',
     key: '/admin/city'
+  },
+  {
+    title: '车辆地图',
+    key: '/admin/bikeMap'
+  },
+  {
+    title: '富文本',
+    key: '/admin/rich'
   },
   {
     title: '权限管理',

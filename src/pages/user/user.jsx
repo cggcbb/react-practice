@@ -47,7 +47,7 @@ export default class User extends React.Component {
     },
     { title: '手机号码', dataIndex: 'telephone', width: 180, align: 'center' },
     { title: '邮箱', dataIndex: 'email', width: 180, align: 'center' },
-    { title: '生日', dataIndex: 'birthday', width: 100, align: 'center' },
+    { title: '出生日期', dataIndex: 'birthday', width: 100, align: 'center' },
     { title: '婚姻', dataIndex: 'married', width: 100, align: 'center',
       render: married => this.marriedConfig[married]
     },
@@ -70,7 +70,16 @@ export default class User extends React.Component {
       placeholder: '手机号码'
     },
     {
+      type: 'SIMPLE-DATEPICKER', // 日期时间控件
+      format: 'YYYY-MM-DD',
+      label: '出生日期',
+      style: { marginRight: 30 },
+      placeholder: '请选择出生日期',
+      field: 'birthday'
+    },
+    {
       type: 'SELECT',
+      label: '婚姻',
       field: 'married',
       style: { width: 120, marginRight: 30 },
       initialValue: ' ',
@@ -158,7 +167,7 @@ export default class User extends React.Component {
   handleDelete = () => {
     Modal.confirm({
       title: '信息',
-      content: `确认删除序号【${this.state.selectedItem.id}】的员工？`,
+      content: `确认删除序号【${this.state.selectedItem.id}】的员工 ？`,
       onOk: () => {
         message.success('删除员工成功！')
         this._getUserList()
@@ -170,8 +179,14 @@ export default class User extends React.Component {
   _clearSelected = () => {
     this.setState({
       selectedRowKeys: [],
-      selectedItem: {}
+      selectedItem: null
     })
+  }
+   // 搜索栏 查询按钮点击事件
+  handleFilterSubmit = (params) => {
+    this.params = params
+    this._getUserList(params)
+    this._clearSelected()
   }
   render() {
     // 单选rowSelection
@@ -182,7 +197,7 @@ export default class User extends React.Component {
     return (
       <section>
         <Card className="card-wrapper" hoverable>
-          <FilterForm formConfig={this.filterConfig}/>
+          <FilterForm formConfig={this.filterConfig} filterSubmit={this.handleFilterSubmit}/>
         </Card>
         <Card className="card-wrapper open-city-wrapper" hoverable size="small">
           <Button type="primary" icon="plus" onClick={() => this.handleOperate('create')}>创建员工</Button>
