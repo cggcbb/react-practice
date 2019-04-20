@@ -247,7 +247,7 @@ class FormRegister extends React.Component {
             </Form.Item>
             <Form.Item {...offsetLayout}>
               {
-                getFieldDecorator('checkbox')(
+                getFieldDecorator('register')(
                   <Button htmlType="submit" type="primary">注册</Button>
                 )
               }
