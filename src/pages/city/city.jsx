@@ -76,12 +76,12 @@ export default class City extends React.Component {
   columns = [
     { title: 'ID', dataIndex: 'id', width: 80, align: 'center' },
     { title: '城市名称', dataIndex: 'city_name', width: 180, align: 'center' },
-    { title: '用车模式', dataIndex: 'use_mode', width: 100, align: 'center',
+    { title: '用车模式', dataIndex: 'use_mode', width: 130, align: 'center',
       render: (use_mode) => {
         return <Badge status={this.useModeConfig[use_mode].badgeStatus} text={<Tag color={this.useModeConfig[use_mode].color}>{this.useModeConfig[use_mode].name}</Tag>}></Badge>
       }
     },
-    { title: '运营模式', dataIndex: 'operate_mode', width: 100, align: 'center',
+    { title: '运营模式', dataIndex: 'operate_mode', width: 130, align: 'center',
       render: (operate_mode) => {
         return <Tag color={this.operateModeConfig[operate_mode].color}>{this.operateModeConfig[operate_mode].name}</Tag>
       }
@@ -96,7 +96,7 @@ export default class City extends React.Component {
     { title: '上次更新时间', dataIndex: 'last_update_time', width: 200, align: 'center',
       render: optimizeCurrentTime
     },
-    { title: '操作员', dataIndex: 'operation_person', width: 200, align: 'center' }
+    { title: '操作员', dataIndex: 'operation_person', width: 160, align: 'center' }
   ]
   filterConfig = [
     {
