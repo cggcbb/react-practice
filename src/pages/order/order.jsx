@@ -170,7 +170,7 @@ export default class Order extends React.Component {
     }
     return (
       <section>
-        <Card className="card-wrapper"hoverable size="middle">
+        <Card className="card-wrapper" hoverable size="middle">
           <FilterForm formConfig={this.filterConfig} filterSubmit={this.handleFilterSubmit}/>
         </Card>
         <Card className="card-wrapper open-city-wrapper">
