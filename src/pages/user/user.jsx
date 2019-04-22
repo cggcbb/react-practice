@@ -270,7 +270,7 @@ class UserForm extends React.Component {
         <Form.Item label="性别">
           {
             getFieldDecorator('sex', {
-              initialValue: userInfo.sex
+              initialValue: userInfo.sex || 1
             })(
               <Radio.Group disabled={type === 'detail'}>
                 <Radio value={1}>男</Radio>
@@ -282,7 +282,7 @@ class UserForm extends React.Component {
         <Form.Item label="婚姻">
           {
             getFieldDecorator('married', {
-              initialValue: userInfo.married
+              initialValue: userInfo.married || 1
             })(
               <Radio.Group disabled={type === 'detail'}>
                 <Radio value={1}>已婚</Radio>
