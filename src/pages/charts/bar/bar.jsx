@@ -150,10 +150,10 @@ export default class Bar extends React.Component {
   render() {
     return (
       <section>
-        <Card title="柱形图" className="card-wrapper" hoverable size="small">
+        <Card title="柱形图" className="card-wrapper" hoverable>
           <ReactEcharts className="react-echarts" option={this.getOptionOne()} theme="vintage"/>
         </Card>
-        <Card title="堆叠柱状图" className="card-wrapper" hoverable size="small">
+        <Card title="堆叠柱状图" className="card-wrapper" hoverable>
           <ReactEcharts className="react-echarts" option={this.getOptionTwo()} theme="vintage"/>
         </Card>
       </section>

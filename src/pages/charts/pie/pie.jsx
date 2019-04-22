@@ -152,7 +152,7 @@ export default class Pie extends React.Component {
         <Card title="饼图二" className="card-wrapper" hoverable>
           <ReactEcharts className="react-echarts" option={this.getOptionTwo()} theme="vintage"/>
         </Card>
-        <Card title="饼图三 （南丁格尔图, 极区图）通过半径区分数据的大小" className="card-wrapper" hoverable>
+        <Card title="饼图三 （南丁格尔玫瑰图, 极区图）通过半径区分数据的大小" className="card-wrapper" hoverable>
           <ReactEcharts className="react-echarts" option={this.getOptionThree()} theme="vintage"/>
         </Card>
       </section>
