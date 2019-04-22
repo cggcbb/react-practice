@@ -1,44 +1,44 @@
 const menuList = [
   {
     title: '首页',
-    key: '/admin/home'
+    key: '/home'
   },
   {
     rootKey: '1',
     title: '设计',
-    key: '/admin/ui',
+    key: '/ui',
     children: [
       {
         title: '按钮',
-        key: '/admin/ui/button'
+        key: '/ui/button'
       },
       {
         title: '弹窗',
-        key: '/admin/ui/modal'
+        key: '/ui/modal'
       },
       {
         title: 'Loading',
-        key: '/admin/ui/loading'
+        key: '/ui/loading'
       },
       {
         title: '通知提醒',
-        key: '/admin/ui/notification'
+        key: '/ui/notification'
       },
       {
         title: '全局Message',
-        key: '/admin/ui/message'
+        key: '/ui/message'
       },
       {
         title: 'Tab页签',
-        key: '/admin/ui/tab'
+        key: '/ui/tab'
       },
       {
         title: '图片画廊',
-        key: '/admin/ui/gallery'
+        key: '/ui/gallery'
       },
       {
         title: '轮播图',
-        key: '/admin/ui/carousel'
+        key: '/ui/carousel'
       }
     ]
   },
@@ -48,11 +48,11 @@ const menuList = [
     children: [
       {
         title: '注册',
-        key: '/admin/form/register'
+        key: '/form/register'
       },
       {
         title: '登录',
-        key: '/admin/form/login'
+        key: '/form/login'
       }
     ]
   },
@@ -62,11 +62,11 @@ const menuList = [
     children: [
       {
         title: '基础表格',
-        key: '/admin/table/basic'
+        key: '/table/basic'
       },
       {
         title: '高级表格',
-        key: '/admin/table/high'
+        key: '/table/high'
       }
     ]
   },
@@ -76,41 +76,41 @@ const menuList = [
     children: [
       {
         title: '柱状图',
-        key: '/admin/charts/bar'
+        key: '/charts/bar'
       },
       {
         title: '饼状图',
-        key: '/admin/charts/pie'
+        key: '/charts/pie'
       },
       {
         title: '折线图',
-        key: '/admin/charts/line'
+        key: '/charts/line'
       }
     ]
   },
   {
     title: '订单管理',
-    key: '/admin/order'
+    key: '/order'
   },
   {
     title: '员工管理',
-    key: '/admin/user'
+    key: '/user'
   },
   {
     title: '城市管理',
-    key: '/admin/city'
+    key: '/city'
   },
   {
     title: '车辆地图',
-    key: '/admin/bikeMap'
+    key: '/bikeMap'
   },
   {
     title: '富文本',
-    key: '/admin/rich'
+    key: '/rich'
   },
   {
     title: '权限管理',
-    key: '/admin/permission'
+    key: '/permission'
   }
 ]
 
