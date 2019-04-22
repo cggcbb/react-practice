@@ -23,38 +23,6 @@ export default class OrderDetail extends React.Component {
     this._drawStartEndIcon()
     this._drawBikeIcon()
   }
-  // 绘制 起点 终点 图标
-  _drawStartEndIcon = () => {
-    let track = this.state.bikeMap.position_list
-    // 创建start icon
-    let startIcon = new window.AMap.Icon({
-        size: new window.AMap.Size(25, 34), // // 图标尺寸
-        image: '//a.amap.com/jsapi_demos/static/demo-center/icons/dir-marker.png', // 图标的取图地址
-        imageSize: new window.AMap.Size(135, 40), // 图标所用图片大小
-        imageOffset: new window.AMap.Pixel(-9, -3) // 图标取图偏移量
-    })
-    // 将 icon 传入 marker
-    let startMarker = new window.AMap.Marker({
-        position: new window.AMap.LngLat(track[0].longitude, track[0].latitude),
-        icon: startIcon,
-        offset: new window.AMap.Pixel(-13, -30)
-    })
-    // 创建end icon
-    let endIcon = new window.AMap.Icon({
-        size: new window.AMap.Size(25, 34),
-        image: '//a.amap.com/jsapi_demos/static/demo-center/icons/dir-marker.png',
-        imageSize: new window.AMap.Size(135, 40),
-        imageOffset: new window.AMap.Pixel(-95, -3)
-    })
-    // 将 icon 传入 marker
-    let endMarker = new window.AMap.Marker({
-        position: new window.AMap.LngLat(track[track.length - 1].longitude, track[track.length - 1].latitude),
-        icon: endIcon,
-        offset: new window.AMap.Pixel(-13, -30)
-    })
-    // 将 markers 添加到地图
-    this.map.add([startMarker, endMarker])
-  }
   // 初始化地图
   _initMap = () => {
     let track = this.state.bikeMap.position_list
@@ -95,15 +63,48 @@ export default class OrderDetail extends React.Component {
     // 缩放地图到合适的视野级别
     this.map.setFitView([ polygon ])
   }
+  // 绘制 起点 终点 图标
+  _drawStartEndIcon = () => {
+    let track = this.state.bikeMap.position_list
+    // 创建start icon
+    let startIcon = new window.AMap.Icon({
+        size: new window.AMap.Size(25, 34), // // 图标尺寸
+        image: '//a.amap.com/jsapi_demos/static/demo-center/icons/dir-marker.png', // 图标的取图地址
+        imageSize: new window.AMap.Size(135, 40), // 图标所用图片大小
+        imageOffset: new window.AMap.Pixel(-9, -3) // 图标取图偏移量
+    })
+    // 将 icon 传入 marker
+    let startMarker = new window.AMap.Marker({
+        position: new window.AMap.LngLat(track[0].longitude, track[0].latitude),
+        icon: startIcon,
+        offset: new window.AMap.Pixel(-13, -30)
+    })
+    // 创建end icon
+    let endIcon = new window.AMap.Icon({
+        size: new window.AMap.Size(25, 34),
+        image: '//a.amap.com/jsapi_demos/static/demo-center/icons/dir-marker.png',
+        imageSize: new window.AMap.Size(135, 40),
+        imageOffset: new window.AMap.Pixel(-95, -3)
+    })
+    // 将 icon 传入 marker
+    let endMarker = new window.AMap.Marker({
+        position: new window.AMap.LngLat(track[track.length - 1].longitude, track[track.length - 1].latitude),
+        icon: endIcon,
+        offset: new window.AMap.Pixel(-13, -30)
+    })
+    // 将 markers 添加到地图
+    this.map.add([startMarker, endMarker])
+  }
+  // 绘制bike图标
   _drawBikeIcon = () => {
     let bikeList = this.state.bikeMap.bike_list
+    // 创建Bike icon
+    let bikeIcon = new window.AMap.Icon({
+      size: new window.AMap.Size(40, 40), // // 图标尺寸
+      image: '/bike-map/bike.png', // 图标的取图地址
+      imageSize: new window.AMap.Size(40, 40), // 图标所用图片大小
+    })
     bikeList.forEach(item => {
-      // 创建start icon
-      let bikeIcon = new window.AMap.Icon({
-        size: new window.AMap.Size(40, 40), // // 图标尺寸
-        image: '/bike-map/bike.png', // 图标的取图地址
-        imageSize: new window.AMap.Size(40, 40), // 图标所用图片大小
-      })
       // 将 icon 传入 marker
       let bikeMarker = new window.AMap.Marker({
         position: new window.AMap.LngLat(item.longitude, item.latitude),
