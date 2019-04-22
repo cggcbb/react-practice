@@ -148,7 +148,7 @@ export default class User extends React.Component {
       type,
       isShowUserFormModal: true,
       title: this.typeConfig[type],
-      userInfo: type == 'create' ? {} : this.state.selectedItem
+      userInfo: type === 'create' ? {} : this.state.selectedItem
     })
   }
   // 检测是否已选择一条员工信息
@@ -233,7 +233,7 @@ export default class User extends React.Component {
           onCancel={this.handleCancel}
           onOk={this.handleSubmit}
           // 员工详情不能点击确定按钮
-          okButtonProps={{ disabled: this.state.type == 'detail' }}
+          okButtonProps={{ disabled: this.state.type === 'detail' }}
         >
           <UserForm type={this.state.type} userInfo={this.state.userInfo} wrappedComponentRef={userForm => { this.userForm = userForm }}/>
         </Modal>
@@ -253,11 +253,6 @@ class UserForm extends React.Component {
         span: 18
       }
     }
-    const radioLayout = {
-      wrapperCol: {
-        span: 18
-      }
-    }
     const { getFieldDecorator } = this.props.form
     const { type, userInfo } = this.props
     return (
@@ -268,7 +263,7 @@ class UserForm extends React.Component {
               rules: [{ required: true, message: '请输入用户名'}],
               initialValue: userInfo.user_name
             })(
-              <Input type="text" placeholder="请输入用户名" disabled={type == 'detail'}/> 
+              <Input type="text" placeholder="请输入用户名" disabled={type === 'detail'}/> 
             )
           }
         </Form.Item>
@@ -277,7 +272,7 @@ class UserForm extends React.Component {
             getFieldDecorator('sex', {
               initialValue: userInfo.sex
             })(
-              <Radio.Group disabled={type == 'detail'}>
+              <Radio.Group disabled={type === 'detail'}>
                 <Radio value={1}>男</Radio>
                 <Radio value={2}>女</Radio>
               </Radio.Group>
@@ -289,7 +284,7 @@ class UserForm extends React.Component {
             getFieldDecorator('married', {
               initialValue: userInfo.married
             })(
-              <Radio.Group disabled={type == 'detail'}>
+              <Radio.Group disabled={type === 'detail'}>
                 <Radio value={1}>已婚</Radio>
                 <Radio value={2}>未婚</Radio>
               </Radio.Group>
@@ -302,7 +297,7 @@ class UserForm extends React.Component {
               rules: [{ required: true, message: '请输入电子邮箱'}],
               initialValue: userInfo.email
             })(
-              <Input type="text" placeholder="请输入电子邮箱" disabled={type == 'detail'}/> 
+              <Input type="text" placeholder="请输入电子邮箱" disabled={type === 'detail'}/> 
             )
           }
         </Form.Item>
@@ -312,7 +307,7 @@ class UserForm extends React.Component {
               rules: [{ required: true, message: '请输入电话号码'}],
               initialValue: userInfo.telephone
             })(
-              <Input type="text" placeholder="请输入电话号码" disabled={type == 'detail'}/> 
+              <Input type="text" placeholder="请输入电话号码" disabled={type === 'detail'}/> 
             )
           }
         </Form.Item>
@@ -327,7 +322,7 @@ class UserForm extends React.Component {
                   minRows: 2,
                   maxRows: 4
                 }}
-                disabled={type == 'detail'}
+                disabled={type === 'detail'}
               />
             )
           }
