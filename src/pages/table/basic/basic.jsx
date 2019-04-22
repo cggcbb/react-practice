@@ -113,8 +113,8 @@ export default class Tables extends React.Component {
       selectedCheckboxRowKeys.unshift(index)
       selectedRows.unshift(record)
     } else {
-      selectedCheckboxRowKeys = selectedCheckboxRowKeys.filter(val => val != index)
-      selectedRows = selectedRows.filter(val => val.id != index + 1)
+      selectedCheckboxRowKeys = selectedCheckboxRowKeys.filter(val => val !== index)
+      selectedRows = selectedRows.filter(val => val.id !== index + 1)
     }
     this.setState({
       selectedCheckboxRowKeys,
