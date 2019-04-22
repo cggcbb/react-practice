@@ -25,6 +25,7 @@ import Bar from 'pages/charts/bar/bar'
 import Pie from 'pages/charts/pie/pie'
 import Line from 'pages/charts/line/line'
 import Rich from 'pages/rich/rich'
+import Permission from 'pages/permission/permission'
 import NoMatch from 'pages/no-match/no-match'
 import React from 'react'
 
@@ -65,6 +66,7 @@ export default class Router extends React.Component {
                     <Route path="/charts/pie" component={Pie}></Route>
                     <Route path="/charts/line" component={Line}></Route>
                     <Route path="/rich" component={Rich}></Route>
+                    <Route path="/permission" component={Permission}></Route>
                     <Redirect to="/home"/>
                     <Route component={NoMatch} />
                   </Switch>
