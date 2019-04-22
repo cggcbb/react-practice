@@ -21,6 +21,7 @@ import Common from 'pages/common/common'
 import BikeMap from 'pages/bike-map/bike-map'
 import User from 'pages/user/user'
 import Bar from 'pages/charts/bar/bar'
+import Pie from 'pages/charts/pie/pie'
 import NoMatch from 'pages/no-match/no-match'
 import React from 'react'
 
@@ -52,6 +53,7 @@ export default class Router extends React.Component {
                     <Route path="/admin/bikeMap" component={BikeMap}></Route>
                     <Route path="/admin/user" component={User}></Route>
                     <Route path="/admin/charts/bar" component={Bar}></Route>
+                    <Route path="/admin/charts/pie" component={Pie}></Route>
                     <Route component={NoMatch} />
                   </Switch>
                 </Admin>
