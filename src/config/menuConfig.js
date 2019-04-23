@@ -45,6 +45,7 @@ const menuList = [
   {
     rootKey: '2',
     title: '表单',
+    key: '/form',
     children: [
       {
         title: '注册',
@@ -59,6 +60,7 @@ const menuList = [
   {
     rootKey: '3',
     title: '表格',
+    key: '/table',
     children: [
       {
         title: '基础表格',
@@ -73,6 +75,7 @@ const menuList = [
   {
     rootKey: '4',
     title: '图标',
+    key: '/charts',
     children: [
       {
         title: '柱状图',
