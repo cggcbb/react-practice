@@ -164,7 +164,6 @@ export default class Tables extends React.Component {
             pagination={{
               simple: true
             }}
-            size="default"
           />
         </Card>
         <Modal

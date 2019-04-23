@@ -208,7 +208,6 @@ export default class User extends React.Component {
         <div className="content-wrapper">
           <Table
             bordered
-            size="middle"
             rowKey={result => result.id - 1}
             columns={this.columns}
             dataSource={this.state.dataSource}
