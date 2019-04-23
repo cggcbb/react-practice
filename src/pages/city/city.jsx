@@ -177,6 +177,7 @@ export default class City extends React.Component {
           visible={this.state.isShowOpenModal}
           onCancel={this.handleCancel}
           onOk={this.handleSubmit}
+          centered
         >
           <OpenCityForm wrappedComponentRef={openCityForm => { this.openCityForm = openCityForm }}/>
         </Modal>

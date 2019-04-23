@@ -136,7 +136,6 @@ export default class Tables extends React.Component {
             columns={this.dynamicColumnsY}
             dataSource={this.state.dynamicDataSource}
             scroll={{y: 420}}
-            pagination={false}
             size="middle"
             pagination={{
               'simple': true

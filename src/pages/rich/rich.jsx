@@ -26,11 +26,19 @@ export default class Tables extends React.Component {
   }
   // 获取HTML文本内容
   handleGetHtmlText = () => {
+    if (!this.state.content) {
+      Modal.warn({
+        title: '信息',
+        content: '未输入任何内容',
+        centered: true
+      })
+      return
+    }
     this.setState({
       isShowRichTextModal: true
     })
   }
-  handleCancle = () => {
+  handleCancel = () => {
     this.setState({
       isShowRichTextModal: false
     })
@@ -52,8 +60,9 @@ export default class Tables extends React.Component {
         <Modal
           title="HTML文本内容"
           visible={this.state.isShowRichTextModal}
-          onCancel={this.handleCancle}
+          onCancel={this.handleCancel}
           footer={null}
+          centered
         >
           {draftToHtml(this.state.content)}
         </Modal>

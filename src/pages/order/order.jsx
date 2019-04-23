@@ -61,7 +61,8 @@ export default class Order extends React.Component {
     if (!orderInfo) {
       Modal.warn({
         title: '信息',
-        content: '请选择一条订单进行查看 ~~~'
+        content: '请选择一条订单进行查看 ~~~',
+        centered: true
       })
       return
     }
@@ -74,13 +75,15 @@ export default class Order extends React.Component {
     if (!orderInfo) {
       Modal.warn({
         title: '信息',
-        content: '请选择一条订单进行结束 ~~~'
+        content: '请选择一条订单进行结束 ~~~',
+        centered: true
       })
       return
     }
     Modal.confirm({
       title: '信息',
       content: `确认结束订单编号【${orderInfo.order_no}】的订单？`,
+      centered: true,
       onOk: () => {
         message.success('结束订单成功！')
         this._getOrderList()
@@ -195,6 +198,7 @@ export default class Order extends React.Component {
                 }
               }
             }}
+            size="middle"
           />
         </div>
       </section>

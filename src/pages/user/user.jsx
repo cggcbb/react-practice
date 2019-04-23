@@ -40,13 +40,13 @@ export default class User extends React.Component {
   }
   // 表头渲染
   columns = [
-    { title: '序列', dataIndex: 'id', width: 40, align: 'center' },
+    { title: '序列', dataIndex: 'id', width: 60, align: 'center' },
     { title: '用户名', dataIndex: 'user_name', width: 100, align: 'center' },
     { title: '性别', dataIndex: 'sex', width: 100, align: 'center',
       render: sex => this.sexConfig[sex]
     },
     { title: '手机号码', dataIndex: 'telephone', width: 180, align: 'center' },
-    { title: '邮箱', dataIndex: 'email', width: 180, align: 'center' },
+    { title: '邮箱', dataIndex: 'email', width: 160, align: 'center' },
     { title: '出生日期', dataIndex: 'birthday', width: 100, align: 'center' },
     { title: '婚姻', dataIndex: 'married', width: 100, align: 'center',
       render: married => this.marriedConfig[married]
@@ -157,7 +157,8 @@ export default class User extends React.Component {
     if (!userInfo) {
       Modal.warn({
         title: '信息',
-        content: '请选择一条员工信息 ~~~'
+        content: '请选择一条员工信息 ~~~',
+        centered: true
       })
       return false
     }
@@ -168,6 +169,7 @@ export default class User extends React.Component {
     Modal.confirm({
       title: '信息',
       content: `确认删除序号【${this.state.selectedItem.id}】的员工 ？`,
+      centered: true,
       onOk: () => {
         message.success('删除员工成功！')
         this._getUserList()
