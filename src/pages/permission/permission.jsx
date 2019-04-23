@@ -1,7 +1,7 @@
 import './permission.less'
 import menuConfig from 'config/menuConfig'
 import React from 'react'
-import { Card, Button, Modal, Table, Badge, Input, Select, Form, message, Tree, Icon } from 'antd'
+import { Card, Button, Modal, Table, Badge, Input, Select, Form, message, Tree, Transfer } from 'antd'
 import { ajax } from 'common/js/ajax'
 
 export default class Tables extends React.Component {
@@ -20,11 +20,28 @@ export default class Tables extends React.Component {
   componentWillMount() {
     this._getRoleList()
   }
+  // 获取角色列表
   _getRoleList = () => {
     ajax({ url: '/role/list' }).then(res => {
       this.setState({
         roleSource: res.result
       })
+    })
+  }
+  // 获取角色用户授权列表
+  _getAuthorizeList = () => {
+    ajax({ url: '/authorize/list' }).then(res => {
+      this._normalizeAuthorizeList(res.result)
+    })
+  }
+  // 处理角色用户授权列表
+  _normalizeAuthorizeList = (dataSource) => {
+    // 初始化已选中的用户( status === 1 )
+    let targetKeys = dataSource.filter(item => item.status === 1).map(item => item.key)
+    this.setState({
+      dataSource,
+      targetKeys,
+      isShowAuthorizeModal: true
     })
   }
   // 创建角色
@@ -39,7 +56,8 @@ export default class Tables extends React.Component {
     if (!roleInfo || !roleInfo.id) {
       Modal.warn({
         title: '信息',
-        content: '请选择一个角色进行设置 ~~~'
+        content: '请选择一个角色进行设置 ~~~',
+        centered: true
       })
       return
     }
@@ -50,7 +68,16 @@ export default class Tables extends React.Component {
   }
   // 用户授权
   handleAuthorize = () => {
-
+    let roleInfo = this.state.selectedItem
+    if (!roleInfo || !roleInfo.id) {
+      Modal.warn({
+        title: '信息',
+        content: '请选择一个角色进行授权 ~~~',
+        centered: true
+      })
+      return
+    }
+    this._getAuthorizeList()
   }
   // 表头
   columns = [
@@ -115,14 +142,34 @@ export default class Tables extends React.Component {
   }
   // 设置权限提交
   handlePermissionSubmit = () => {
-    const permissionParams = this.permissionForm.props.form.getFieldsValue() // eg {role_name: "开发", state: 1}
-    // 获取id和选中的menus
-    permissionParams.id = this.state.selectedItem.id
-    permissionParams.menus = this.state.menuInfo
-    ajax({ url: '/role/edit', params: permissionParams }).then(res => {
+    const params = this.permissionForm.props.form.getFieldsValue() // eg {role_name: "开发", state: 1}
+    // 获取 角色id 和选中的 menus
+    params.id = this.state.selectedItem.id
+    params.menus = this.state.menuInfo
+    ajax({ url: '/role/edit', params }).then(res => {
       message.success(res.msg)
       this.setState({
         isShowPermissionModal: false
+      })
+      this._getRoleList()
+      this._clearSelected()
+    })
+  }
+  // 角色授权弹窗关闭
+  handleAuthorizeCancel = () => {
+    this.setState({
+      isShowAuthorizeModal: false
+    })
+  }
+  // 角色授权弹窗提交
+  handleAuthorizeSubmit = () => {
+    let params = {}
+    params.user_ids = this.state.targetKeys
+    params.role_id = this.state.selectedItem.id
+    ajax({ url: '/authorize/edit', params }).then(res => {
+      message.success(res.msg)
+      this.setState({
+        isShowAuthorizeModal: false
       })
       this._getRoleList()
       this._clearSelected()
@@ -132,6 +179,12 @@ export default class Tables extends React.Component {
   updateMenuInfo = (checkedKeys) => {
     this.setState({
       menuInfo: checkedKeys
+    })
+  }
+  // 更新角色用户
+  updateTargetKeys = (targetKeys) => {
+    this.setState({
+      targetKeys
     })
   }
   render() {
@@ -161,9 +214,6 @@ export default class Tables extends React.Component {
                 }
               }
             }}
-            pagination={{
-              simple: true
-            }}
           />
         </Card>
         <Modal
@@ -186,7 +236,23 @@ export default class Tables extends React.Component {
             roleInfo={this.state.selectedItem}
             wrappedComponentRef={permissionForm => { this.permissionForm = permissionForm }}
             menuInfo={this.state.menuInfo}
-            patchMenuInfo={this.updateMenuInfo}  
+            patchMenuInfo={this.updateMenuInfo}
+          />
+        </Modal>
+        <Modal
+          title="用户授权"
+          width={800}
+          centered
+          visible={this.state.isShowAuthorizeModal}
+          onCancel={this.handleAuthorizeCancel}
+          onOk={this.handleAuthorizeSubmit}
+        >
+          <AuthorizeForm 
+            roleInfo={this.state.selectedItem}
+            dataSource={this.state.dataSource}
+            targetKeys={this.state.targetKeys}
+            patchAuthorize={this.updateTargetKeys}
+            wrappedComponentRef={authorizeForm => { this.authorizeForm = authorizeForm }}
           />
         </Modal>
       </section>
@@ -263,7 +329,7 @@ class PermissionForm extends React.Component {
     const { getFieldDecorator } = this.props.form
     const { roleInfo, menuInfo } = this.props
     return (
-      <Form layout="horizontal" {...layout}>
+      <Form className="permission-form" layout="horizontal" {...layout}>
         <Form.Item label="角色名称">
           {
             getFieldDecorator('role_name', {
@@ -294,7 +360,7 @@ class PermissionForm extends React.Component {
           }}
           checkedKeys={menuInfo}
         >
-          <Tree.TreeNode title="平台权限" key="platfrom_all">
+          <Tree.TreeNode title="平台权限" key="platform_all">
             {
               this.renderTreeNodes(menuConfig)
             }
@@ -305,3 +371,52 @@ class PermissionForm extends React.Component {
   }
 }
 PermissionForm = Form.create({ name: 'PermissionForm' })(PermissionForm)
+
+// 用户授权Modal
+class AuthorizeForm extends React.Component {
+
+  filterOption = (inputValue, option) => {
+    return option.user_name.includes(inputValue)
+  } 
+  handleChange = (targetKeys) => {
+    this.props.patchAuthorize(targetKeys)
+  }
+  render() {
+    const layout = {
+      labelCol: {
+        span: 3
+      },
+      wrapperCol: {
+        span: 20
+      }
+    }
+    const { getFieldDecorator } = this.props.form
+    const { roleInfo, dataSource, targetKeys } = this.props
+    return (
+      <Form layout="horizontal" {...layout}>
+        <Form.Item label="角色名称">
+          {
+            getFieldDecorator('role_name', {
+              initialValue: roleInfo.role_name
+            })(
+              <Input type="text" disabled/>
+            )
+          }
+        </Form.Item>
+        <Form.Item label="选择用户">
+          <Transfer
+            listStyle={{width: 280, height: 500}}
+            showSearch
+            filterOption={this.filterOption}
+            dataSource={dataSource}
+            titles={['待选用户', '已选用户']}
+            targetKeys={targetKeys}
+            render={item => item.user_name}
+            onChange={this.handleChange}
+          />
+        </Form.Item>
+      </Form>
+    )
+  }
+}
+AuthorizeForm = Form.create({ name: 'AuthorizeForm' })(AuthorizeForm)
