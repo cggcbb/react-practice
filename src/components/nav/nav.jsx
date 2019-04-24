@@ -1,12 +1,14 @@
 import { Menu, Switch } from 'antd'
 import { NavLink } from 'react-router-dom'
 import menuConfig from 'config/menuConfig'
+import { connect } from 'react-redux'
+import { switchMenu } from '@/redux/action/action'
 import React from 'react'
 
 
 const SubMenu = Menu.SubMenu
 
-export default class Nav extends React.Component {
+class Nav extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -28,6 +30,7 @@ export default class Nav extends React.Component {
       menuTreeNode,
       rootSubmenuKeys,
     })
+    this._reduxDispatch(switchMenu, 22222222222)
   }
   // 菜单渲染
   _renderMenu = (data) => {
@@ -66,10 +69,15 @@ export default class Nav extends React.Component {
     dom.style.transition = '.3s'
     dom.style.backgroundColor = this.state.navColor
   }
-  handleMenuChange = ({ key }) => {
+  handleMenuChange = ({ item, key }) => {
+    this._reduxDispatch(switchMenu, 1111)
     this.setState({
       currentKey: [key]
     })
+  }
+  _reduxDispatch = (func, props = '') => {
+    const { dispatch } = this.props
+    dispatch(func(props))
   }
   render() {
     return (
@@ -100,3 +108,5 @@ export default class Nav extends React.Component {
     )
   }
 }
+
+export default connect()(Nav)

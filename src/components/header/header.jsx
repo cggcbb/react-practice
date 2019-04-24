@@ -1,12 +1,14 @@
-import { Col, Row } from 'antd';
-import { getChengduWeather } from 'api/weather';
-import { optimizeCurrentTime } from 'common/js/utils';
-import { SUCCESS_CODE, SUCCESS_STATUS } from 'common/js/config';
-import React from 'react';
+import { Col, Row } from 'antd'
+import { getChengduWeather } from 'api/weather'
+import { optimizeCurrentTime } from 'common/js/utils'
+import { SUCCESS_CODE, SUCCESS_STATUS } from 'common/js/config'
+import { message } from 'antd'
+import { connect } from 'react-redux'
+import React from 'react'
 
-import './header.less';
+import './header.less'
 
-export default class Header extends React.Component {
+class Header extends React.Component {
   componentWillMount() {
     this.setState({
       userName: 'cggcbb',
@@ -35,7 +37,7 @@ export default class Header extends React.Component {
             ? '' 
             : <Row className="breadcrumb">
                 <Col span={4} className="breadcrumb-title">
-                  首页
+                  { this.props.menuName }
                 </Col>
                 <Col span={20} className="weather">
                   <span className="date">{this.state.sysTime}</span>
@@ -49,7 +51,7 @@ export default class Header extends React.Component {
     )
   }
   logout() {
-    console.log('click logout')
+    message.info('退出')
   }
   _getChengduWeather = () => {
     getChengduWeather().then(res => {
@@ -62,7 +64,14 @@ export default class Header extends React.Component {
         })
       }
     }).catch(err => {
-      console.log(err)
+      message.error(err.info)
     })
   }
 }
+const mapStateToProps = state => {
+  
+  return {
+    menuName: state.menuName
+  }
+}
+export default connect(mapStateToProps)(Header)
