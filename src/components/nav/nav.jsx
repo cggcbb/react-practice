@@ -13,7 +13,8 @@ export default class Nav extends React.Component {
       rootSubmenuKeys: [],
       openKeys: [],
       theme: 'dark',
-      navColor: '#fff'
+      navColor: '#fff',
+      currentKey: [window.location.hash.replace(/#|\?.*$/g, '')]
     }
   }
   componentWillMount() {
@@ -22,10 +23,10 @@ export default class Nav extends React.Component {
     const rootSubmenuKeys = menuConfig.map(item => {
       return item.rootKey
     }).filter(item => item)
-  
+    
     this.setState({
       menuTreeNode,
-      rootSubmenuKeys
+      rootSubmenuKeys,
     })
   }
   // 菜单渲染
@@ -65,6 +66,11 @@ export default class Nav extends React.Component {
     dom.style.transition = '.3s'
     dom.style.backgroundColor = this.state.navColor
   }
+  handleMenuChange = ({ key }) => {
+    this.setState({
+      currentKey: [key]
+    })
+  }
   render() {
     return (
       <nav>
@@ -81,6 +87,8 @@ export default class Nav extends React.Component {
           onOpenChange={this.onOpenChange}
           theme={this.state.theme}
           style={{border: 'none'}}
+          selectedKeys={this.state.currentKey}
+          onClick={this.handleMenuChange}
         >
           {this.state.menuTreeNode}
         </Menu>
