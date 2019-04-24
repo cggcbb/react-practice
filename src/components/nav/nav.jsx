@@ -74,13 +74,17 @@ export default class Nav extends React.Component {
   render() {
     return (
       <nav>
-        <Switch
-          checked={this.state.theme === 'dark'}
-          onChange={this.changeTheme}
-          checkedChildren="Dark"
-          unCheckedChildren="Light"
-          className="nav-switch"
-        />
+        <div className="logo-wrapper">
+          <img src="/nav/logo.svg" alt="logo" width="32"/>
+          <img src="/nav/logo_description.svg" alt="logo_description" width="80"/>
+          <Switch
+            checked={this.state.theme === 'dark'}
+            onChange={this.changeTheme}
+            checkedChildren="Dark"
+            unCheckedChildren="Light"
+            className="nav-switch"
+          />
+        </div>
         <Menu
           mode="inline"
           openKeys={this.state.openKeys}
