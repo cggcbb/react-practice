@@ -3,7 +3,7 @@ import React from 'react'
 import { Card } from 'antd'
 import echarts from 'echarts'
 import { ajax } from 'common/js/ajax'
-import colorTheme from '../colorTheme'
+import colorTheme from 'config/colorTheme'
 import ReactEcharts from 'echarts-for-react'
 
 export default class Line extends React.Component {
