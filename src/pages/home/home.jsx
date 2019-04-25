@@ -2,7 +2,6 @@ import './home.less'
 import React from 'react'
 import { Row, Col, Card, Timeline, Progress} from 'antd'
 import echarts from 'echarts'
-import { ajax } from 'common/js/ajax'
 import colorTheme from 'config/colorTheme'
 import ReactEcharts from 'echarts-for-react'
 
