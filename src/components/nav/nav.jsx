@@ -1,10 +1,9 @@
-import { Menu, Switch } from 'antd'
+import { Menu, Switch, Icon } from 'antd'
 import { NavLink } from 'react-router-dom'
 import menuConfig from 'config/menuConfig'
 import { connect } from 'react-redux'
 import { switchMenu } from '@/redux/action/action'
 import React from 'react'
-
 
 const SubMenu = Menu.SubMenu
 
@@ -19,32 +18,52 @@ class Nav extends React.Component {
       currentKey: [window.location.hash.replace(/#|\?.*$/g, '')]
     }
   }
+  // 获取所有 menu { key, title } 数组, 来初始化面包屑的默认title
+  _getMenuTitleKey = (data) => {
+    return data.map(item => {
+      if (item.children) {
+        return this._getMenuTitleKey(item.children)
+      }
+      let { key, title } = item
+      return {
+        key,
+        title
+      }
+    }).flat()
+  }
   componentWillMount() {
     const menuTreeNode = this._renderMenu(menuConfig)
     // 获取rootSubmenuKeys
     const rootSubmenuKeys = menuConfig.map(item => {
       return item.rootKey
     }).filter(item => item)
-    
+
     this.setState({
       menuTreeNode,
       rootSubmenuKeys,
+      menuKeyTitleMap: this._getMenuTitleKey(menuConfig)
+    }, () => {
+      // 因为setState是异步操作, 在回调中才能拿到更新后的state
+      let currentTitle = this.state.menuKeyTitleMap.filter(item => item.key === this.state.currentKey[0])[0].title
+      this._reduxDispatch(switchMenu, currentTitle)
     })
-    this._reduxDispatch(switchMenu, 22222222222)
   }
   // 菜单渲染
   _renderMenu = (data) => {
     return data.map(item => {
       if (item.children) {
         return (
-          <SubMenu title={item.title} key={item.rootKey}>
+          <SubMenu title={<span><Icon type={item.icon}/>{item.title}</span>} key={item.rootKey}>
             {this._renderMenu(item.children)}
           </SubMenu>
         )
       }
       return (
-        <Menu.Item key={item.key}>
-          <NavLink to={item.key}>{item.title}</NavLink>
+        <Menu.Item key={item.key} title={item.title}>
+          <NavLink to={item.key} >
+            <Icon type={item.icon}/>
+            {item.title}
+          </NavLink>
         </Menu.Item>
       )
     })
@@ -60,21 +79,26 @@ class Nav extends React.Component {
       })
     }
   }
+  // 修改主题
   changeTheme = (value) => {
+    // 保证dom只获取一次
+    const { dom = document.getElementsByClassName('nav-left')[0] } = this.state
     this.setState({
       theme: value ? 'dark' : 'light',
-      navColor: value ? '#fff' : '#001529'
+      navColor: value ? '#fff' : '#001529',
+      dom
     })
-    let dom = document.getElementsByClassName('nav-left')[0]
     dom.style.transition = '.3s'
     dom.style.backgroundColor = this.state.navColor
   }
+  // 切换菜单
   handleMenuChange = ({ item, key }) => {
-    this._reduxDispatch(switchMenu, 1111)
+    this._reduxDispatch(switchMenu, item.props.title)
     this.setState({
       currentKey: [key]
     })
   }
+  // dispatch action 更新 redux state
   _reduxDispatch = (func, props = '') => {
     const { dispatch } = this.props
     dispatch(func(props))

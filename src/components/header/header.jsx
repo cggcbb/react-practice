@@ -1,4 +1,4 @@
-import { Col, Row } from 'antd'
+import { Col, Row, Icon, Badge } from 'antd'
 import { getChengduWeather } from 'api/weather'
 import { optimizeCurrentTime } from 'common/js/utils'
 import { SUCCESS_CODE, SUCCESS_STATUS } from 'common/js/config'
@@ -11,12 +11,19 @@ import './header.less'
 class Header extends React.Component {
   componentWillMount() {
     this.setState({
-      userName: 'cggcbb',
-      sysTime: optimizeCurrentTime()
+      sysTime: optimizeCurrentTime(),
+      notifyCount: 1,
+      offsetX: 0
     })
     setInterval(() => {
+      let { notifyCount } = this.state
+      let curr = ++notifyCount
+      let length = (curr + '').length
+      let offsetX = length < 2 ? 0 : length === 2 ? 6 : 10
       this.setState({
-        sysTime: optimizeCurrentTime()
+        sysTime: optimizeCurrentTime(),
+        offsetX,
+        notifyCount: curr
       })
     }, 1000)
     // 获取成都天气
@@ -28,8 +35,14 @@ class Header extends React.Component {
       <header className="header">
         <Row className="header-user-info">
           <Col span={24}>
-            <span>欢迎，{this.state.userName}</span>
-            <a href="#" onClick={this.logout.bind(this)} className="logout">退出</a>
+            <Badge className="badge-wrapper" count={this.state.notifyCount} overflowCount={99} offset={[this.state.offsetX, 2]}>
+              <div className="notify-badge">
+                <Icon type="bell" style={{fontSize: 20}}></Icon>
+              </div>
+            </Badge>
+            <a href="#" className="avatar">
+              <img src="/nav/avatar.jpg" width="40"/>
+            </a>
           </Col>
         </Row>
         {

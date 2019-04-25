@@ -1,12 +1,14 @@
 const menuList = [
   {
     title: '首页',
-    key: '/home'
+    key: '/home',
+    icon: 'home'
   },
   {
     rootKey: '1',
     title: '设计',
     key: '/ui',
+    icon: 'yuque',
     children: [
       {
         title: '按钮',
@@ -46,6 +48,7 @@ const menuList = [
     rootKey: '2',
     title: '表单',
     key: '/form',
+    icon: 'form',
     children: [
       {
         title: '注册',
@@ -61,6 +64,7 @@ const menuList = [
     rootKey: '3',
     title: '表格',
     key: '/table',
+    icon: 'table',
     children: [
       {
         title: '基础表格',
@@ -76,6 +80,7 @@ const menuList = [
     rootKey: '4',
     title: '图标',
     key: '/charts',
+    icon: 'bar-chart',
     children: [
       {
         title: '柱状图',
@@ -93,27 +98,33 @@ const menuList = [
   },
   {
     title: '订单管理',
-    key: '/order'
+    key: '/order',
+    icon: 'schedule'
   },
   {
     title: '员工管理',
-    key: '/user'
+    key: '/user',
+    icon: 'user'
   },
   {
     title: '城市管理',
-    key: '/city'
+    key: '/city',
+    icon: 'share-alt'
   },
   {
     title: '车辆地图',
-    key: '/bikeMap'
+    key: '/bikeMap',
+    icon: 'global'
   },
   {
     title: '富文本',
-    key: '/rich'
+    key: '/rich',
+    icon: 'block'
   },
   {
     title: '权限管理',
-    key: '/permission'
+    key: '/permission',
+    icon: 'lock'
   }
 ]
 
