@@ -45,7 +45,7 @@ export default class Router extends React.Component {
               return (
                 <Admin>
                   <Switch>
-                    <Route path="/home" component={Home}></Route>
+                    <Route exact path="/" component={Home}></Route>
                     <Route path="/ui/button" component={Button}></Route>
                     <Route path="/ui/modal" component={Modal}></Route>
                     <Route path="/ui/loading" component={Loading}></Route>
@@ -67,7 +67,6 @@ export default class Router extends React.Component {
                     <Route path="/charts/line" component={Line}></Route>
                     <Route path="/rich" component={Rich}></Route>
                     <Route path="/permission" component={Permission}></Route>
-                    <Redirect to="/home"/>
                     <Route component={NoMatch} />
                   </Switch>
                 </Admin>
