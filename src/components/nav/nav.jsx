@@ -15,7 +15,8 @@ class Nav extends React.Component {
       openKeys: [],
       theme: 'dark',
       navColor: '#fff',
-      currentKey: [window.location.hash.replace(/#|\?.*$/g, '')]
+      currentKey: [window.location.hash.replace(/#|\?.*$/g, '')],
+      menuKeyTitleMap: this._getMenuTitleKey(menuConfig)
     }
   }
   // 获取所有 menu { key, title } 数组, 来初始化面包屑的默认title
@@ -41,12 +42,10 @@ class Nav extends React.Component {
     this.setState({
       menuTreeNode,
       rootSubmenuKeys,
-      menuKeyTitleMap: this._getMenuTitleKey(menuConfig)
-    }, () => {
-      // 因为setState是异步操作, 在回调中才能拿到更新后的state
-      let currentTitle = this.state.menuKeyTitleMap.filter(item => item.key === this.state.currentKey[0])[0].title
-      this._reduxDispatch(switchMenu, currentTitle)
     })
+    // 因为setState是异步操作, 在回调中才能拿到更新后的state
+    let currentTitle = this.state.menuKeyTitleMap.filter(item => item.key === this.state.currentKey[0])[0].title
+    this._reduxDispatch(switchMenu, currentTitle)
   }
   // 菜单渲染
   _renderMenu = (data) => {
