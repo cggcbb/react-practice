@@ -1,6 +1,6 @@
 import './home.less'
 import React from 'react'
-import { Row, Col, Card, Timeline, Progress} from 'antd'
+import { Row, Col, Card, Timeline, Progress, Collapse } from 'antd'
 import echarts from 'echarts'
 import colorTheme from 'config/colorTheme'
 import ReactEcharts from 'echarts-for-react'
@@ -74,6 +74,15 @@ export default class Home extends React.Component {
         return idx * 20
       }
     }
+    const imgLayout = {
+      lg: 24,
+      xl: 8
+    }
+    const countLayout = {
+      lg: 24,
+      xl: 10
+    }
+    const text = `You can say something you want to say here.`
     return (
       <div className="home-wrapper">
         <Row
@@ -92,12 +101,11 @@ export default class Home extends React.Component {
                   <Row
                     align="middle"
                     type="flex"
-                    gutter={20}
                   >
-                    <Col span={5}>
+                    <Col {...imgLayout}>
                       <img alt="love" src="/home/love.png" width="44"></img>
                     </Col>
-                    <Col span={19}>
+                    <Col {...countLayout} className="home-image-col">
                       <span>收藏</span>
                       <br/>
                       <span className="description">5000</span>
@@ -114,12 +122,11 @@ export default class Home extends React.Component {
                   <Row
                     align="middle"
                     type="flex"
-                    gutter={20}
                   >
-                    <Col span={5}>
-                      <img alt="phone" src="/home/phone.png" width="44"></img>
+                    <Col {...imgLayout}>
+                      <img alt="photo" src="/home/photo.png" width="44"></img>
                     </Col>
-                    <Col span={19}>
+                    <Col {...countLayout} className="home-image-col">
                       <span>照片</span>
                       <br/>
                       <span className="description">802</span>
@@ -140,13 +147,12 @@ export default class Home extends React.Component {
                   <Row
                     align="middle"
                     type="flex"
-                    gutter={20}
                   >
-                    <Col span={5}>
+                    <Col {...imgLayout}>
                       <img alt="cloud" src="/home/cloud.png" width="44"></img>
                     </Col>
-                    <Col span={19}>
-                      <span>云数据</span>
+                    <Col {...countLayout} className="home-image-col">
+                      <span>数据</span>
                       <br/>
                       <span className="description">12081</span>
                     </Col>
@@ -162,12 +168,11 @@ export default class Home extends React.Component {
                   <Row
                     align="middle"
                     type="flex"
-                    gutter={20}
                   >
-                    <Col span={5}>
+                    <Col {...imgLayout}>
                       <img alt="email" src="/home/email.png" width="44"></img>
                     </Col>
-                    <Col span={19}>
+                    <Col {...countLayout} className="home-image-col">
                       <span>邮件</span>
                       <br/>
                       <span className="description">92</span>
@@ -178,7 +183,7 @@ export default class Home extends React.Component {
             </Row>
           </Col>
           <Col span={15}>
-            <ReactEcharts style={{height: 238}} option={option} theme="vintage"/>
+            <ReactEcharts className="home-charts" option={option} theme="vintage"/>
           </Col>
         </Row>
         <Row
@@ -190,9 +195,9 @@ export default class Home extends React.Component {
                 <Timeline.Item color="#b5003e">What must have happened at that time</Timeline.Item>
                 <Timeline.Item color="green">What must have happened at that time</Timeline.Item>
                 <Timeline.Item color="red">
-                  <p>What problems must have been encountered at that time</p>
-                  <p>What problems must have been encountered at that time</p>
-                  <p>What problems must have been encountered at that time</p>
+                  <p>What must have happened at that time</p>
+                  <p>What must have happened at that time</p>
+                  <p>What must have happened at that time</p>
                 </Timeline.Item>
                 <Timeline.Item color="#288594">
                   <p>There must be some regret at that time</p>
@@ -293,21 +298,26 @@ export default class Home extends React.Component {
               </Col>
               <Col span={12}>
                 <Card className="card-wrapper">
-                  <Timeline reverse>
-                    <Timeline.Item color="#b5003e">What must have happened at that time</Timeline.Item>
-                    <Timeline.Item color="green">What must have happened at that time</Timeline.Item>
-                    <Timeline.Item color="red">
-                      <p>What problems must have been encountered at that time</p>
-                      <p>What problems must have been encountered at that time</p>
-                      <p>What problems must have been encountered at that time</p>
-                    </Timeline.Item>
-                    <Timeline.Item color="#288594">
-                      <p>There must be some regret at that time</p>
-                    </Timeline.Item>
-                    <Timeline.Item>
-                      <p>What must be going on at this time</p>
-                    </Timeline.Item>
-                  </Timeline>
+                  <Collapse accordion >
+                    <Collapse.Panel header="Do you have anything to say?" key="1" style={{backgroundColor: '#1496e2'}}>
+                      <p>{text}</p>
+                    </Collapse.Panel>
+                    <Collapse.Panel header="Do you have anything to say?" key="2" style={{backgroundColor: '#b67cf5'}}>
+                      <p>{text}</p>
+                    </Collapse.Panel>
+                    <Collapse.Panel header="Do you have anything to say?" key="3" style={{backgroundColor: '#ea6f5a'}}>
+                      <p>{text}</p>
+                    </Collapse.Panel>
+                    <Collapse.Panel header="Do you have anything to say?" key="4" style={{backgroundColor: '#e471bc'}}>
+                      <p>{text}</p>
+                    </Collapse.Panel>
+                    <Collapse.Panel header="Do you have anything to say?" key="5" disabled style={{backgroundColor: '#ffe31b'}}>
+                      <p>{text}</p>
+                    </Collapse.Panel>
+                    <Collapse.Panel header="Do you have anything to say?" key="6" style={{backgroundColor: '#55e079'}}>
+                      <p>{text}</p>
+                    </Collapse.Panel>
+                  </Collapse>
                 </Card>
               </Col>
             </Row>

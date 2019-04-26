@@ -12,35 +12,43 @@ const menuList = [
     children: [
       {
         title: '按钮',
-        key: '/ui/button'
+        key: '/ui/button',
+        icon: 'fire'
       },
       {
         title: '弹窗',
-        key: '/ui/modal'
+        key: '/ui/modal',
+        icon: 'flag'
       },
       {
         title: 'Loading',
-        key: '/ui/loading'
+        key: '/ui/loading',
+        icon: 'loading'
       },
       {
         title: '通知提醒',
-        key: '/ui/notification'
+        key: '/ui/notification',
+        icon: 'notification'
       },
       {
         title: '全局Message',
-        key: '/ui/message'
+        key: '/ui/message',
+        icon: 'message'
       },
       {
         title: 'Tab页签',
-        key: '/ui/tab'
+        key: '/ui/tab',
+        icon: 'align-left'
       },
       {
         title: '图片画廊',
-        key: '/ui/gallery'
+        key: '/ui/gallery',
+        icon: 'gateway'
       },
       {
         title: '轮播图',
-        key: '/ui/carousel'
+        key: '/ui/carousel',
+        icon: 'interation'
       }
     ]
   },
@@ -52,11 +60,13 @@ const menuList = [
     children: [
       {
         title: '注册',
-        key: '/form/register'
+        key: '/form/register',
+        icon: 'select'
       },
       {
         title: '登录',
-        key: '/form/login'
+        key: '/form/login',
+        icon: 'login'
       }
     ]
   },
@@ -68,11 +78,13 @@ const menuList = [
     children: [
       {
         title: '基础表格',
-        key: '/table/basic'
+        key: '/table/basic',
+        icon: 'appstore'
       },
       {
         title: '高级表格',
-        key: '/table/high'
+        key: '/table/high',
+        icon: 'block'
       }
     ]
   },
@@ -80,19 +92,22 @@ const menuList = [
     rootKey: '4',
     title: '图标',
     key: '/charts',
-    icon: 'bar-chart',
+    icon: 'area-chart',
     children: [
       {
         title: '柱状图',
-        key: '/charts/bar'
+        key: '/charts/bar',
+        icon: 'bar-chart'
       },
       {
         title: '饼状图',
-        key: '/charts/pie'
+        key: '/charts/pie',
+        icon: 'pie-chart'
       },
       {
         title: '折线图',
-        key: '/charts/line'
+        key: '/charts/line',
+        icon: 'line-chart'
       }
     ]
   },
@@ -119,7 +134,7 @@ const menuList = [
   {
     title: '富文本',
     key: '/rich',
-    icon: 'block'
+    icon: 'read'
   },
   {
     title: '权限管理',

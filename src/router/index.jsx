@@ -1,4 +1,4 @@
-import { HashRouter, Route, Switch, Redirect } from 'react-router-dom'
+import { HashRouter, Route, Switch } from 'react-router-dom'
 import Admin from 'pages/admin/admin'
 import App from '@/App'
 import Button from 'pages/ui/button/button'

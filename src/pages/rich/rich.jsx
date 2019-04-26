@@ -55,6 +55,7 @@ export default class Tables extends React.Component {
             editorState={this.state.editorState}
             onContentStateChange={this.onContentStateChange}
             onEditorStateChange={this.onEditorStateChange}
+            editorStyle={{height: 150}}
           />
         </Card>
         <Modal

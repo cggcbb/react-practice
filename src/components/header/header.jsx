@@ -15,7 +15,7 @@ class Header extends React.Component {
       notifyCount: 1,
       offsetX: 0
     })
-    setInterval(() => {
+    this.timer = setInterval(() => {
       let { notifyCount } = this.state
       let curr = ++notifyCount
       let length = (curr + '').length
@@ -28,6 +28,9 @@ class Header extends React.Component {
     }, 1000)
     // 获取成都天气
     this._getChengduWeather();
+  }
+  componentWillUnmount() {
+    clearInterval(this.timer)
   }
   render() {
     let { type } = this.props
