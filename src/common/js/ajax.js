@@ -39,18 +39,9 @@ export const ajax = (options) => {
         loading.style.display = 'none'
       }
       if (res.status === STATUS_SUCCESS) {
-        if (res.data.code === CODE_SUCCESS) {
-          resolve(res.data)
-        } else {
-          Modal.error({
-            title: '错误',
-            content: res.data.msg,
-            centered: true
-          })
-          resolve(res)
-        }
+        resolve(res.data)
       } else {
-        reject(res)
+        reject(res.data)
       }
     })
   })
