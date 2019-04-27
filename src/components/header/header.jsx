@@ -1,4 +1,4 @@
-import { Col, Row, Icon, Badge } from 'antd'
+import { Col, Row, Icon, Badge, Popover, Button } from 'antd'
 import { getChengduWeather } from 'api/weather'
 import { optimizeCurrentTime } from 'common/js/utils'
 import { SUCCESS_CODE, SUCCESS_STATUS } from 'common/js/config'
@@ -32,7 +32,16 @@ class Header extends React.Component {
   componentWillUnmount() {
     clearInterval(this.timer)
   }
+  handleLogout = () => {
+    window.location.hash = '#/login'
+  }
   render() {
+    const content = (
+      <p className="logout-item" onClick={this.handleLogout}>
+        <i className="logout-icon"/>
+        退出登录
+      </p>
+    )
     let { type } = this.props
     return (
       <header className="header">
@@ -43,9 +52,11 @@ class Header extends React.Component {
                 <Icon type="bell" style={{fontSize: 20}}></Icon>
               </div>
             </Badge>
-            <a href="#/login" className="avatar">
-              <img src="/nav/avatar.jpg" width="40"/>
-            </a>
+            <Popover placement="bottomRight" content={content} trigger="hover">
+              <a href="#" className="avatar">
+                <img src="/nav/avatar.jpg" width="40"/>
+              </a>
+            </Popover>
           </Col>
         </Row>
         {
@@ -65,9 +76,6 @@ class Header extends React.Component {
         }
       </header>
     )
-  }
-  logout() {
-    message.info('退出')
   }
   _getChengduWeather = () => {
     getChengduWeather().then(res => {

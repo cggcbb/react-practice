@@ -1,6 +1,6 @@
 import React from 'react'
-import { connect } from "react-redux";
-import { Route, Redirect } from "react-router-dom";
+import { connect } from "react-redux"
+import { Route, Redirect } from "react-router-dom"
  
 export const AuthorizeRoute = ({ component: ComposedComponent, ...rest }) => {
   class Authentication extends React.Component {
@@ -10,17 +10,17 @@ export const AuthorizeRoute = ({ component: ComposedComponent, ...rest }) => {
         <Route
           {...rest}
           render={props =>
-            !isLogin? (
+            !isLogin ? 
               <Redirect
                 to={{
                   pathname: "/login",
                   state: { from: props.location }
                 }}
               />
-            ) : <ComposedComponent {...props} />
+             : <ComposedComponent {...props} />
           }
         />
-      );
+      )
     }
   }
   const AuthenticationContainer = connect(state => {
