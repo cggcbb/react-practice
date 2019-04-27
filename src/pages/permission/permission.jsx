@@ -214,6 +214,7 @@ export default class Tables extends React.Component {
                 }
               }
             }}
+            size="middle"
           />
         </Card>
         <Modal

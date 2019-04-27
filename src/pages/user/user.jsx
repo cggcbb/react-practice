@@ -225,6 +225,7 @@ export default class User extends React.Component {
                 }
               }
             }}
+            size="middle"
           />
         </div>
         <Modal

@@ -13,7 +13,7 @@ export default class Bar extends React.Component {
   componentWillMount() {
     echarts.registerTheme('vintage', {
       color: colorTheme,
-      backgroundColor: '#fef8ef',
+      backgroundColor: '#f3f3f3',
       graph: {
         color: colorTheme
       }

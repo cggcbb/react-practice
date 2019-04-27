@@ -170,6 +170,7 @@ export default class City extends React.Component {
             pagination={{
               simple: true
             }}
+            size="middle"
           />
         </div>
         <Modal

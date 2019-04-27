@@ -27,9 +27,9 @@ export default class Tables extends React.Component {
   // 固定表头 上下滚动
   dynamicColumnsY = [
     { title: 'ID', dataIndex: 'id', width: 80, align: 'center' },
-    { title: '姓名', dataIndex: 'name', width: 120, align: 'center' },
-    { title: '年龄', dataIndex: 'age', width: 200, align: 'center', },
-    { title: '邮箱', dataIndex: 'email', width: 300, align: 'center' },
+    { title: '姓名', dataIndex: 'name', width: 80, align: 'center' },
+    { title: '年龄', dataIndex: 'age', width: 80, align: 'center', },
+    { title: '邮箱', dataIndex: 'email', width: 200, align: 'center' },
     { title: '电话', dataIndex: 'telephone', width: 200, align: 'center' },
     { title: "技能", dataIndex: "skill", width: 200, align: 'center',
       render: (skill) => {
