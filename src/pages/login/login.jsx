@@ -23,6 +23,7 @@ class Login extends React.Component {
         let { _token } = res.result
         const { dispatch } = this.props
         dispatch(updateToken(_token))
+        window.sessionStorage.setItem('_token', _token)
         window.location.hash = '#/index'
       } else {
         message.error(res.msg)
