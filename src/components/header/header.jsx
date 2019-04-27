@@ -43,7 +43,7 @@ class Header extends React.Component {
                 <Icon type="bell" style={{fontSize: 20}}></Icon>
               </div>
             </Badge>
-            <a href="#" className="avatar">
+            <a href="#/login" className="avatar">
               <img src="/nav/avatar.jpg" width="40"/>
             </a>
           </Col>
@@ -85,7 +85,6 @@ class Header extends React.Component {
   }
 }
 const mapStateToProps = state => {
-  
   return {
     menuName: state.menuName
   }

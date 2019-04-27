@@ -1,53 +1,53 @@
 const menuList = [
   {
     title: '首页',
-    key: '/',
+    key: '/index',
     icon: 'home'
   },
   {
     rootKey: '1',
     title: '设计',
-    key: '/ui',
+    key: '/index/ui',
     icon: 'yuque',
     children: [
       {
         title: '按钮',
-        key: '/ui/button',
+        key: '/index/ui/button',
         icon: 'fire'
       },
       {
         title: '弹窗',
-        key: '/ui/modal',
+        key: '/index/ui/modal',
         icon: 'flag'
       },
       {
         title: 'Loading',
-        key: '/ui/loading',
+        key: '/index/ui/loading',
         icon: 'loading'
       },
       {
         title: '通知提醒',
-        key: '/ui/notification',
+        key: '/index/ui/notification',
         icon: 'notification'
       },
       {
         title: '全局Message',
-        key: '/ui/message',
+        key: '/index/ui/message',
         icon: 'message'
       },
       {
         title: 'Tab页签',
-        key: '/ui/tab',
+        key: '/index/ui/tab',
         icon: 'align-left'
       },
       {
         title: '图片画廊',
-        key: '/ui/gallery',
+        key: '/index/ui/gallery',
         icon: 'gateway'
       },
       {
         title: '轮播图',
-        key: '/ui/carousel',
+        key: '/index/ui/carousel',
         icon: 'interation'
       }
     ]
@@ -55,17 +55,17 @@ const menuList = [
   {
     rootKey: '2',
     title: '表单',
-    key: '/form',
+    key: '/index/form',
     icon: 'form',
     children: [
       {
         title: '注册',
-        key: '/form/register',
+        key: '/index/form/register',
         icon: 'select'
       },
       {
         title: '登录',
-        key: '/form/login',
+        key: '/index/form/login',
         icon: 'login'
       }
     ]
@@ -73,17 +73,17 @@ const menuList = [
   {
     rootKey: '3',
     title: '表格',
-    key: '/table',
+    key: '/index/table',
     icon: 'table',
     children: [
       {
         title: '基础表格',
-        key: '/table/basic',
+        key: '/index/table/basic',
         icon: 'appstore'
       },
       {
         title: '高级表格',
-        key: '/table/high',
+        key: '/index/table/high',
         icon: 'block'
       }
     ]
@@ -91,54 +91,54 @@ const menuList = [
   {
     rootKey: '4',
     title: '图标',
-    key: '/charts',
+    key: '/index/charts',
     icon: 'area-chart',
     children: [
       {
         title: '柱状图',
-        key: '/charts/bar',
+        key: '/index/charts/bar',
         icon: 'bar-chart'
       },
       {
         title: '饼状图',
-        key: '/charts/pie',
+        key: '/index/charts/pie',
         icon: 'pie-chart'
       },
       {
         title: '折线图',
-        key: '/charts/line',
+        key: '/index/charts/line',
         icon: 'line-chart'
       }
     ]
   },
   {
     title: '订单管理',
-    key: '/order',
+    key: '/index/order',
     icon: 'schedule'
   },
   {
     title: '员工管理',
-    key: '/user',
+    key: '/index/user',
     icon: 'user'
   },
   {
     title: '城市管理',
-    key: '/city',
+    key: '/index/city',
     icon: 'share-alt'
   },
   {
     title: '车辆地图',
-    key: '/bikeMap',
+    key: '/index/bikeMap',
     icon: 'global'
   },
   {
     title: '富文本',
-    key: '/rich',
+    key: '/index/rich',
     icon: 'read'
   },
   {
     title: '权限管理',
-    key: '/permission',
+    key: '/index/permission',
     icon: 'lock'
   }
 ]

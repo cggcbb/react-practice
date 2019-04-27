@@ -1,7 +1,6 @@
 import axios from 'axios'
 import { Modal } from 'antd'
 
-
 const STATUS_SUCCESS = 200
 const CODE_SUCCESS = 0
 
@@ -45,11 +44,13 @@ export const ajax = (options) => {
         } else {
           Modal.error({
             title: '错误',
-            content: res.data.msg
+            content: res.data.msg,
+            centered: true
           })
+          resolve(res)
         }
       } else {
-        reject(res.data)
+        reject(res)
       }
     })
   })

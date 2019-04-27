@@ -1,0 +1,107 @@
+.login-wrapper {
+  width: 100%;
+  height: calc(100vh);
+  background-image: url("/login/login-bg.png");
+  padding-top: 120px;
+  .login-box {
+    width: 450px;
+    margin: 50px auto;
+    .login-title {
+      padding: 10px;
+      text-align: center;
+      font-size: 14px;
+      line-height: 30px;
+      color: gray;
+      background-color: transparent;
+      h2 {
+        font-size: 26px;
+        color: #b2dfee;
+        font-family: inherit;
+        font-weight: bold;
+      }
+    }
+    .form-login {
+      background: #2e363f;
+      background-color: transparent;
+      border-top: 1px solid #616161;
+      border-bottom: 1px solid #616161;
+      .form-item {
+        padding-top: 8px;
+        .item-label {
+          display: inline-block;
+          color: #b2dfee;
+          padding-left: 4px;
+          margin-bottom: 5px;
+        }
+        .form-input-wrapper {
+          text-align: center;
+          box-shadow: 0 0 4px rgb(178, 223, 255, .2);
+          .user-name, .user-password {
+            float: left;
+            padding: 11px 14px;
+            line-height: 2px;
+            color: #fff;
+            i {
+              display: inline-block;
+              width: 20px;
+              height: 20px;
+            }
+          }
+          .user-name {
+            background-color: #28b779;
+            i {
+              background: url("/login/user.svg") no-repeat center/cover;
+            }
+          }
+          .user-password {
+            background-color: #da542e;
+            i {
+              background: url("/login/pass.svg") no-repeat center/cover;
+            }
+          }
+          .form-input {
+            float: right;
+            border: none;
+            width: 89.3%;
+            line-height: 34px;
+            padding: 4px 10px;
+            outline: none;
+          }
+          &::after {
+            content: '';
+            display: block;
+            clear: both;
+          }
+        }
+      }
+      .form-submit-wrapper {
+        padding: 15px 0;
+        line-height: 40px;
+        color: #fff;
+        .submit {
+          float: right;
+          width: 160px;
+          height: 40px;
+          color: #fff;
+          background-color: #006dcc;
+          padding: 4px 12px;
+          font-size: 14px;
+          line-height: 20px;
+          border: none;
+          letter-spacing: 6px;
+          text-shadow: 0 -1px 5px rgba(0, 0, 0, .3);
+          transition: background-color .3s;
+          outline: none;
+          cursor: pointer;
+          &:hover {
+            background-color: #033496;
+            box-shadow: 0 -1px 10px rgba(0, 0, 0, .2) inset;
+          }
+        }
+        .forget-password {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+} 

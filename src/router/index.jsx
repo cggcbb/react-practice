@@ -1,4 +1,5 @@
-import { HashRouter, Route, Switch } from 'react-router-dom'
+import { HashRouter, Route, Switch, Redirect } from 'react-router-dom'
+import { AuthorizeRoute } from './authorize'
 import Admin from 'pages/admin/admin'
 import App from '@/App'
 import Button from 'pages/ui/button/button'
@@ -41,38 +42,39 @@ export default class Router extends React.Component {
                 <Route path="/common/order/detail/:orderNo" component={OrderDetail}/>
               </Common>
             }/>
-            <Route path="/" render={() => {
+            <Route path="/index" render={() => {
               return (
                 <Admin>
                   <Switch>
-                    <Route exact path="/" component={Home}></Route>
-                    <Route path="/ui/button" component={Button}></Route>
-                    <Route path="/ui/modal" component={Modal}></Route>
-                    <Route path="/ui/loading" component={Loading}></Route>
-                    <Route path="/ui/notification" component={Notice}></Route>
-                    <Route path="/ui/message" component={Message}></Route>
-                    <Route path="/ui/tab" component={Tab}></Route>
-                    <Route path="/ui/gallery" component={Gallery}></Route>
-                    <Route path="/ui/carousel" component={Carousel}></Route>
-                    <Route path="/form/login" component={FormLogin}></Route>
-                    <Route path="/form/register" component={FormRegister}></Route>
-                    <Route path="/table/basic" component={BasicTable}></Route>
-                    <Route path="/table/high" component={HighTable}></Route>
-                    <Route path="/city" component={City}></Route>
-                    <Route path="/order" component={Order}></Route>
-                    <Route path="/bikeMap" component={BikeMap}></Route>
-                    <Route path="/user" component={User}></Route>
-                    <Route path="/charts/bar" component={Bar}></Route>
-                    <Route path="/charts/pie" component={Pie}></Route>
-                    <Route path="/charts/line" component={Line}></Route>
-                    <Route path="/rich" component={Rich}></Route>
-                    <Route path="/permission" component={Permission}></Route>
-                    <Route component={NoMatch} />
+                    <AuthorizeRoute exact path="/index" component={Home}></AuthorizeRoute>
+                    <AuthorizeRoute path="/index/ui/button" component={Button}></AuthorizeRoute>
+                    <AuthorizeRoute path="/index/ui/modal" component={Modal}></AuthorizeRoute>
+                    <AuthorizeRoute path="/index/ui/loading" component={Loading}></AuthorizeRoute>
+                    <AuthorizeRoute path="/index/ui/notification" component={Notice}></AuthorizeRoute>
+                    <AuthorizeRoute path="/index/ui/message" component={Message}></AuthorizeRoute>
+                    <AuthorizeRoute path="/index/ui/tab" component={Tab}></AuthorizeRoute>
+                    <AuthorizeRoute path="/index/ui/gallery" component={Gallery}></AuthorizeRoute>
+                    <AuthorizeRoute path="/index/ui/carousel" component={Carousel}></AuthorizeRoute>
+                    <AuthorizeRoute path="/index/form/login" component={FormLogin}></AuthorizeRoute>
+                    <AuthorizeRoute path="/index/form/register" component={FormRegister}></AuthorizeRoute>
+                    <AuthorizeRoute path="/index/table/basic" component={BasicTable}></AuthorizeRoute>
+                    <AuthorizeRoute path="/index/table/high" component={HighTable}></AuthorizeRoute>
+                    <AuthorizeRoute path="/index/city" component={City}></AuthorizeRoute>
+                    <AuthorizeRoute path="/index/order" component={Order}></AuthorizeRoute>
+                    <AuthorizeRoute path="/index/bikeMap" component={BikeMap}></AuthorizeRoute>
+                    <AuthorizeRoute path="/index/user" component={User}></AuthorizeRoute>
+                    <AuthorizeRoute path="/index/charts/bar" component={Bar}></AuthorizeRoute>
+                    <AuthorizeRoute path="/index/charts/pie" component={Pie}></AuthorizeRoute>
+                    <AuthorizeRoute path="/index/charts/line" component={Line}></AuthorizeRoute>
+                    <AuthorizeRoute path="/index/rich" component={Rich}></AuthorizeRoute>
+                    <AuthorizeRoute path="/index/permission" component={Permission}></AuthorizeRoute>
+                    <AuthorizeRoute component={NoMatch} />
                   </Switch>
                 </Admin>
               )
             }}></Route>
-            <Route component={NoMatch} />
+            <Redirect from="/" to="/login"/>
+            <AuthorizeRoute component={NoMatch} />
           </Switch>
         </App>
       </HashRouter>

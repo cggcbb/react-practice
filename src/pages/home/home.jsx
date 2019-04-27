@@ -311,10 +311,7 @@ export default class Home extends React.Component {
                     <Collapse.Panel header="Do you have anything to say?" key="4" style={{backgroundColor: '#e471bc'}}>
                       <p>{text}</p>
                     </Collapse.Panel>
-                    <Collapse.Panel header="Do you have anything to say?" key="5" disabled style={{backgroundColor: '#ffe31b'}}>
-                      <p>{text}</p>
-                    </Collapse.Panel>
-                    <Collapse.Panel header="Do you have anything to say?" key="6" style={{backgroundColor: '#55e079'}}>
+                    <Collapse.Panel header="Do you have anything to say?" key="5" disabled style={{backgroundColor: '#55e079'}}>
                       <p>{text}</p>
                     </Collapse.Panel>
                   </Collapse>
