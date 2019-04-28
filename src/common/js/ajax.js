@@ -1,8 +1,6 @@
 import axios from 'axios'
-import { Modal } from 'antd'
 
 const STATUS_SUCCESS = 200
-const CODE_SUCCESS = 0
 
 const instance = axios.create({
   baseURL: 'https://www.easy-mock.com/mock/5cabf67f1a2ff67cf5210f83/manager/mock',
