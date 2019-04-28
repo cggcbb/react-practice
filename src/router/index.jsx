@@ -1,166 +1,80 @@
 import { HashRouter, Route, Switch, Redirect } from 'react-router-dom'
 import { AuthorizeRoute } from './authorize'
 import Loadable from 'react-loadable'
-// import Admin from 'pages/admin/admin'
-// import App from '@/App'
-// import Button from 'pages/ui/button/button'
-// import Loading from 'pages/ui/loading/loading'
-// import Login from 'pages/login/login'
-// import Home from 'pages/home/home'
-// import Modal from 'pages/ui/modal/modal'
-// import Notice from 'pages/ui/notice/notice'
-// import Message from 'pages/ui/message/message'
-// import Tab from 'pages/ui/tab/tab'
-// import Gallery from 'pages/ui/gallery/gallery'
-// import Carousel from 'pages/ui/carousel/carousel'
-// import FormLogin from 'pages/form/login/login'
-// import FormRegister from 'pages/form/register/register'
-// import BasicTable from 'pages/table/basic/basic'
-// import HighTable from 'pages/table/high/high'
-// import City from 'pages/city/city'
-// import Order from 'pages/order/order'
-// import OrderDetail from 'pages/order/detail'
-// import Common from 'pages/common/common'
-// import BikeMap from 'pages/bike-map/bike-map'
-// import User from 'pages/user/user'
-// import Bar from 'pages/charts/bar/bar'
-// import Pie from 'pages/charts/pie/pie'
-// import Line from 'pages/charts/line/line'
-// import Rich from 'pages/rich/rich'
-// import Permission from 'pages/permission/permission'
-// import NoMatch from 'pages/no-match/no-match'
 import React from 'react'
 
-const loadingComponent = ({ isLoading, error }) => {
-  // Handle the loading state
-  if (isLoading) {
-      return (
-        <div style={{position: 'absolute', width: '100%', height: 'calc(100vh)', background: '#000'}}>
-          <div style={{width: 400, height: 200, margin: '400px auto', color: '#fff', fontSize: 40}}>Loading</div>
-        </div>
-      )
+// 登录页面加载背景提示
+const loginLoadingComponent = ({ isLoading, error }) => {
+  const loadingText = (text) => {
+    return <div style={{position: 'absolute', width: '100%', height: 'calc(100vh)', background: 'rgba(0, 0, 0, .9)'}}>
+      <div style={
+        {
+          position: 'absolute',
+          color: '#fff',
+          fontSize: 40,
+          left: 0,
+          top: 0,
+          right: 0,
+          bottom: 0,
+          textAlign: 'center',
+          lineHeight: 'calc(100vh)',
+          letterSpacing: 3,
+          fontStyle: 'italic'
+        }
+      }
+      >{text}</div>
+    </div>
   }
-  // Handle the error state
+  if (isLoading) {
+    return (
+      loadingText('Loading ...')
+    )
+  }
   else if (error) {
-      return <div>Sorry, there was a problem loading the page.</div>
+    return loadingText('Sorry, there was a problem loading the page.')
   }
   else {
-      return null
+    return null
   }
 }
+// 其他页面加载
+const loading = ({ isLoading }) => {
+  if (isLoading) {
+    return (
+      ''
+    )
+  }
+  return null
+}
 
-const Admin = Loadable({
-  loader: () => import('pages/admin/admin'),
-  loading: loadingComponent
-})
-const App = Loadable({
-  loader: () => import('@/App'),
-  loading: loadingComponent
-})
-const Button = Loadable({
-  loader: () => import('pages/ui/button/button'),
-  loading: loadingComponent
-})
-const Loading = Loadable({
-  loader: () => import('pages/ui/loading/loading'),
-  loading: loadingComponent
-})
-const Login = Loadable({
-  loader: () => import('pages/login/login'),
-  loading: loadingComponent
-})
-const Home = Loadable({
-  loader: () => import('pages/home/home'),
-  loading: loadingComponent
-})
-const Modal = Loadable({
-  loader: () => import('pages/ui/modal/modal'),
-  loading: loadingComponent
-})
-const Notice = Loadable({
-  loader: () => import('pages/ui/notice/notice'),
-  loading: loadingComponent
-})
-const Message = Loadable({
-  loader: () => import('pages/ui/message/message'),
-  loading: loadingComponent
-})
-const Tab = Loadable({
-  loader: () => import('pages/ui/tab/tab'),
-  loading: loadingComponent
-})
-const Gallery = Loadable({
-  loader: () => import('pages/ui/gallery/gallery'),
-  loading: loadingComponent
-})
-const Carousel = Loadable({
-  loader: () => import('pages/ui/carousel/carousel'),
-  loading: loadingComponent
-})
-const FormLogin = Loadable({
-  loader: () => import('pages/form/login/login'),
-  loading: loadingComponent
-})
-const FormRegister = Loadable({
-  loader: () => import('pages/form/register/register'),
-  loading: loadingComponent
-})
-const BasicTable = Loadable({
-  loader: () => import('pages/table/basic/basic'),
-  loading: loadingComponent
-})
-const HighTable = Loadable({
-  loader: () => import('pages/table/high/high'),
-  loading: loadingComponent
-})
-const City = Loadable({
-  loader: () => import('pages/city/city'),
-  loading: loadingComponent
-})
-const Order = Loadable({
-  loader: () => import('pages/order/order'),
-  loading: loadingComponent
-})
-const OrderDetail = Loadable({
-  loader: () => import('pages/order/detail'),
-  loading: loadingComponent
-})
-const Common = Loadable({
-  loader: () => import('pages/common/common'),
-  loading: loadingComponent
-})
-const BikeMap = Loadable({
-  loader: () => import('pages/bike-map/bike-map'),
-  loading: loadingComponent
-})
-const User = Loadable({
-  loader: () => import('pages/user/user'),
-  loading: loadingComponent
-})
-const Bar = Loadable({
-  loader: () => import('pages/charts/bar/bar'),
-  loading: loadingComponent
-})
-const Pie = Loadable({
-  loader: () => import('pages/charts/pie/pie'),
-  loading: loadingComponent
-})
-const Line = Loadable({
-  loader: () => import('pages/charts/line/line'),
-  loading: loadingComponent
-})
-const Rich = Loadable({
-  loader: () => import('pages/rich/rich'),
-  loading: loadingComponent
-})
-const Permission = Loadable({
-  loader: () => import('pages/permission/permission'),
-  loading: loadingComponent
-})
-const NoMatch = Loadable({
-  loader: () => import('pages/no-match/no-match'),
-  loading: loadingComponent
-})
+const Admin =        Loadable({ loader: () => import('pages/admin/admin'), loading })
+const App =          Loadable({ loader: () => import('@/App'), loading })
+const Button =       Loadable({ loader: () => import('pages/ui/button/button'), loading })
+const Loading =      Loadable({ loader: () => import('pages/ui/loading/loading'), loading })
+const Login =        Loadable({ loader: () => import('pages/login/login'), loading: loginLoadingComponent })
+const Home =         Loadable({ loader: () => import('pages/home/home'), loading })
+const Modal =        Loadable({ loader: () => import('pages/ui/modal/modal'), loading })
+const Notice =       Loadable({ loader: () => import('pages/ui/notice/notice'), loading })
+const Message =      Loadable({ loader: () => import('pages/ui/message/message'), loading })
+const Tab =          Loadable({ loader: () => import('pages/ui/tab/tab'), loading })
+const Gallery =      Loadable({ loader: () => import('pages/ui/gallery/gallery'), loading })
+const Carousel =     Loadable({ loader: () => import('pages/ui/carousel/carousel'), loading })
+const FormLogin =    Loadable({ loader: () => import('pages/form/login/login'), loading })
+const FormRegister = Loadable({ loader: () => import('pages/form/register/register'), loading })
+const BasicTable =   Loadable({ loader: () => import('pages/table/basic/basic'), loading })
+const HighTable =    Loadable({ loader: () => import('pages/table/high/high'), loading })
+const City =         Loadable({ loader: () => import('pages/city/city'), loading })
+const Order =        Loadable({ loader: () => import('pages/order/order'), loading })
+const OrderDetail =  Loadable({ loader: () => import('pages/order/detail'), loading })
+const Common =       Loadable({ loader: () => import('pages/common/common'), loading })
+const BikeMap =      Loadable({ loader: () => import('pages/bike-map/bike-map'), loading })
+const User =         Loadable({ loader: () => import('pages/user/user'), loading })
+const Bar =          Loadable({ loader: () => import('pages/charts/bar/bar'), loading })
+const Pie =          Loadable({ loader: () => import('pages/charts/pie/pie'), loading })
+const Line =         Loadable({ loader: () => import('pages/charts/line/line'), loading })
+const Rich =         Loadable({ loader: () => import('pages/rich/rich'), loading })
+const Permission =   Loadable({ loader: () => import('pages/permission/permission'), loading })
+const NoMatch =      Loadable({ loader: () => import('pages/no-match/no-match'), loading })
 
 
 export default class Router extends React.Component {
