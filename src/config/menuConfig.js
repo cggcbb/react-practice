@@ -90,7 +90,7 @@ const menuList = [
   },
   {
     rootKey: '4',
-    title: '图标',
+    title: '图表',
     key: '/index/charts',
     icon: 'area-chart',
     children: [
