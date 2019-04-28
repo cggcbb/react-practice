@@ -53,7 +53,7 @@ class Header extends React.Component {
               </div>
             </Badge>
             <Popover placement="bottomRight" content={content} trigger="hover">
-              <a href="#" className="avatar">
+              <a href="javascript:;" className="avatar">
                 <img src="/nav/avatar.jpg" width="40"/>
               </a>
             </Popover>

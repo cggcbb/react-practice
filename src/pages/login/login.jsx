@@ -18,7 +18,7 @@ class Login extends React.Component {
 		let w = can.width = window.innerWidth   // 设置canvas宽度
 		let h = can.height = window.innerHeight // 设置canvas高度
 		let data = []                           // 定义一个数组，准备用来存点坐标
-		let num = 180                           // 定义点数量
+		let num = 150                           // 定义点数量
 		let meteors = []                        // 流行数组
 		let k = -1                              // 固定流星斜率
 		let range = Math.atan(k)                // 流星弧度
@@ -167,39 +167,37 @@ class Login extends React.Component {
     })
   }
   render() {
-    
     return (
-      <section>
+      <section className="login-wrapper">
         <canvas id='canvas'></canvas>
-        <div className="login-wrapper">
-          <div className="login-box">
-            <div className="login-title">
-              <h2>管理系统平台</h2>
-              <span>版权所有 © 2015-2019 成都肥湖队网络科技有限公司</span>
+        <div className="login-c"></div>
+        <div className="login-box">
+          <div className="login-title">
+            <h2>管理系统平台</h2>
+          </div>
+          <form className="form-login">
+            <div className="form-item">
+              <span className="item-label">输入账号</span>
+              <div className="form-input-wrapper">
+                <span className="user-name"><i></i></span>
+                <input placeholder="Except for any one of the null values" className="form-input" id="username" type="text" onChange={this.handleUserNameChange}></input>
+              </div>
             </div>
-            <form className="form-login">
-              <div className="form-item">
-                <span className="item-label">输入账号</span>
-                <div className="form-input-wrapper">
-                  <span className="user-name"><i></i></span>
-                  <input placeholder="Except for any one of the null values" className="form-input" id="username" type="text" onChange={this.handleUserNameChange}></input>
-                </div>
+            <div className="form-item">
+              <span className="item-label">登录密码</span>
+              <div className="form-input-wrapper">
+                <span className="user-password"><i></i></span>
+                <input placeholder="Except for any one of the null values" className="form-input" id="password" type="password" onChange={this.handlePasswordChange}></input>
               </div>
-              <div className="form-item">
-                <span className="item-label">登录密码</span>
-                <div className="form-input-wrapper">
-                  <span className="user-password"><i></i></span>
-                  <input placeholder="Except for any one of the null values" className="form-input" id="password" type="password" onChange={this.handlePasswordChange}></input>
-                </div>
-              </div>
-              <div className="form-submit-wrapper">
-                <span className="forget-password">忘记密码 ?</span>
-                <button type="button" className="submit" onClick={this.handleSubmit}>登录</button>
-              </div>
-            </form>
-            <div className="login-title">
-              <p>推荐使用现代浏览器，如 chrome、Firefox 等</p>
             </div>
+            <div className="form-submit-wrapper">
+              <span className="forget-password">忘记密码 ?</span>
+              <button type="button" className="submit" onClick={this.handleSubmit}>登录</button>
+            </div>
+          </form>
+          <div className="login-title">
+            <span>版权所有 © 2015-2019 成都肥湖队网络科技有限公司</span>
+            <p>推荐使用现代浏览器，如 chrome、Firefox 等</p>
           </div>
         </div>
       </section>
