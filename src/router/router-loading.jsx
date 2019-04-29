@@ -2,7 +2,7 @@ import React from 'react'
 
 // 登录页面加载背景提示
 export const loginLoadingComponent = ({ isLoading, error }) => {
-  const loadingText = (text) => {
+  const loadingText = (text, isLogin = false) => {
     return <div style={{position: 'absolute', width: '100%', height: 'calc(100vh)', background: 'rgba(0, 0, 0, .9)'}}>
       <div style={
         {
@@ -37,9 +37,24 @@ export const loginLoadingComponent = ({ isLoading, error }) => {
 // 其他页面加载
 export const loading = ({ isLoading }) => {
   if (isLoading) {
-    return (
-      ''
-    )
+    return <div style={{position: 'absolute', width: '100%', height: 'calc(100vh)', background: 'rgba(255, 255, 255, 1)'}}>
+      <div style={
+        {
+          position: 'absolute',
+          color: '#000',
+          fontSize: 40,
+          left: 0,
+          top: 0,
+          right: 0,
+          bottom: 0,
+          textAlign: 'center',
+          lineHeight: 'calc(100vh)',
+          letterSpacing: 3,
+          fontStyle: 'italic'
+        }
+      }
+      >Loading ... </div>
+    </div>
   }
   return null
 }

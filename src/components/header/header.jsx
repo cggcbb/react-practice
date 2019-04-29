@@ -1,14 +1,14 @@
-import { Col, Row, Icon, Badge, Popover, Button } from 'antd'
+import { Col, Row, Icon, Badge, Popover, message, Breadcrumb } from 'antd'
 import { getChengduWeather } from 'api/weather'
 import { optimizeCurrentTime } from 'common/js/utils'
 import { SUCCESS_CODE, SUCCESS_STATUS } from 'common/js/config'
-import { message } from 'antd'
 import { connect } from 'react-redux'
 import React from 'react'
 
 import './header.less'
 
 class Header extends React.Component {
+  breadcrumbConfig = ['ui', 'form', 'table', 'charts']
   componentWillMount() {
     this.setState({
       sysTime: optimizeCurrentTime(),
@@ -35,6 +35,18 @@ class Header extends React.Component {
   handleLogout = () => {
     window.location.hash = '#/login'
   }
+  renderBreadcrumb = () => {
+    return this.props.breadcrumb.map((item, index) => {
+      return (
+        <Breadcrumb.Item key={index} onClick={this.handleBeadcrumbClick}>
+          {this.breadcrumbConfig.includes(item.key) || index === this.props.breadcrumb.length - 1 ? item.title : <a href={`#${item.key}`}>{item.title}</a>}
+        </Breadcrumb.Item>
+      )
+    })
+  }
+  handleBeadcrumbClick = () => {
+    this.props.handleBeadcrumbClick()
+  }
   render() {
     const content = (
       <p className="logout-item" onClick={this.handleLogout}>
@@ -53,9 +65,9 @@ class Header extends React.Component {
               </div>
             </Badge>
             <Popover placement="bottomRight" content={content} trigger="hover">
-              <a href="javascript:;" className="avatar">
-                <img src="/nav/avatar.jpg" width="40"/>
-              </a>
+              <div className="avatar">
+                <img alt="avatar" src="/nav/avatar.jpg" width="40"/>
+              </div>
             </Popover>
           </Col>
         </Row>
@@ -63,10 +75,12 @@ class Header extends React.Component {
           type
             ? '' 
             : <Row className="breadcrumb">
-                <Col span={4} className="breadcrumb-title">
-                  { this.props.menuName }
+                <Col span={6} className="breadcrumb-title">
+                  <Breadcrumb separator=">">
+                    {this.renderBreadcrumb()}
+                  </Breadcrumb>
                 </Col>
-                <Col span={20} className="weather">
+                <Col span={18} className="weather">
                   <span className="date">{this.state.sysTime}</span>
                   <span className="city">{this.state.city}</span>
                   <span className="weather-detail">{this.state.weather}</span>
@@ -94,7 +108,7 @@ class Header extends React.Component {
 }
 const mapStateToProps = state => {
   return {
-    menuName: state.menuName
+    breadcrumb: state.breadcrumb
   }
 }
 export default connect(mapStateToProps)(Header)

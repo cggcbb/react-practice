@@ -3,10 +3,10 @@ export const types = {
   UPDATE_TOKEN: 'UPDATE_TOKEN'
 }
 
-export const switchMenu = (menuName) => {
+export const switchMenu = (breadcrumb) => {
   return {
     type: types.SWITCH_MENU,
-    menuName
+    breadcrumb
   }
 }
 

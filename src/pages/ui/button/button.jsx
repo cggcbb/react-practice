@@ -1,8 +1,6 @@
 import { Card, Button, Icon, Radio } from 'antd'
 import React from 'react'
 
-import './button.less'
-
 export default class Buttons extends React.Component {
   componentWillMount() {
     this.setState({

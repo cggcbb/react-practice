@@ -1,7 +1,7 @@
 import { types } from '../action/action'
 
 const initialState = {
-  menuName: '首页',
+  breadcrumb: [{ title: '首页', key: 'index' }],
   token: null
 }
 
@@ -10,7 +10,7 @@ export default (state = initialState, action) => {
     case types.SWITCH_MENU:
       return {
         ...state,
-        menuName: action.menuName
+        breadcrumb: action.breadcrumb
       }
     case types.UPDATE_TOKEN:
       return {

@@ -1,8 +1,8 @@
 import { Menu, Switch, Icon } from 'antd'
 import { NavLink } from 'react-router-dom'
 import menuConfig from 'config/menuConfig'
+import { getBreadcrumb } from 'config/breadcrumb'
 import { connect } from 'react-redux'
-import { switchMenu } from '@/redux/action/action'
 import React from 'react'
 
 const SubMenu = Menu.SubMenu
@@ -15,8 +15,6 @@ class Nav extends React.Component {
       openKeys: [],
       theme: 'dark',
       navColor: '#fff',
-      currentKey: [window.location.hash.replace(/#|\?.*$/g, '')],
-      menuKeyTitleMap: this._getMenuTitleKey(menuConfig)
     }
   }
   // 获取所有 menu { key, title } 数组, 来初始化面包屑的默认title
@@ -43,9 +41,6 @@ class Nav extends React.Component {
       menuTreeNode,
       rootSubmenuKeys,
     })
-    // 因为setState是异步操作, 在回调中才能拿到更新后的state
-    let currentTitle = this.state.menuKeyTitleMap.filter(item => item.key === this.state.currentKey[0])[0].title
-    this._reduxDispatch(switchMenu, currentTitle)
   }
   // 菜单渲染
   _renderMenu = (data) => {
@@ -67,7 +62,7 @@ class Nav extends React.Component {
       )
     })
   }
-  // 切换菜单
+  // 二级菜单切换
   onOpenChange = (openKeys) => {
     const latestOpenKey = openKeys.find(key => !this.state.openKeys.includes(key))
     if (!this.state.rootSubmenuKeys.includes(latestOpenKey)) {
@@ -92,15 +87,9 @@ class Nav extends React.Component {
   }
   // 切换菜单
   handleMenuChange = ({ item, key }) => {
-    this._reduxDispatch(switchMenu, item.props.title)
-    this.setState({
-      currentKey: [key]
-    })
-  }
-  // dispatch action 更新 redux state
-  _reduxDispatch = (func, props = '') => {
-    const { dispatch } = this.props
-    dispatch(func(props))
+    let breadcrumb = getBreadcrumb({key, title: item.props.title})
+    // 告诉父级菜单被点击了, 传入key和处理好的面包屑信息
+    this.props.handleMenuChange(key, breadcrumb)
   }
   render() {
     return (
@@ -122,7 +111,7 @@ class Nav extends React.Component {
           onOpenChange={this.onOpenChange}
           theme={this.state.theme}
           style={{border: 'none'}}
-          selectedKeys={this.state.currentKey}
+          selectedKeys={this.props.currentKey}
           onClick={this.handleMenuChange}
         >
           {this.state.menuTreeNode}

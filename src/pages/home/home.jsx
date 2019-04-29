@@ -103,7 +103,7 @@ export default class Home extends React.Component {
                     type="flex"
                   >
                     <Col {...imgLayout}>
-                      <img alt="love" src="/home/love.png" width="44"></img>
+                      <img alt="love" src="/home/love.png" width="44"/>
                     </Col>
                     <Col {...countLayout} className="home-image-col">
                       <span>收藏</span>
@@ -124,7 +124,7 @@ export default class Home extends React.Component {
                     type="flex"
                   >
                     <Col {...imgLayout}>
-                      <img alt="photo" src="/home/photo.png" width="44"></img>
+                      <img alt="po" src="/home/photo.png" width="44"/>
                     </Col>
                     <Col {...countLayout} className="home-image-col">
                       <span>照片</span>
@@ -149,7 +149,7 @@ export default class Home extends React.Component {
                     type="flex"
                   >
                     <Col {...imgLayout}>
-                      <img alt="cloud" src="/home/cloud.png" width="44"></img>
+                      <img alt="cloud" src="/home/cloud.png" width="44"/>
                     </Col>
                     <Col {...countLayout} className="home-image-col">
                       <span>数据</span>
@@ -170,7 +170,7 @@ export default class Home extends React.Component {
                     type="flex"
                   >
                     <Col {...imgLayout}>
-                      <img alt="email" src="/home/email.png" width="44"></img>
+                      <img alt="email" src="/home/email.png" width="44"/>
                     </Col>
                     <Col {...countLayout} className="home-image-col">
                       <span>邮件</span>
