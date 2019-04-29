@@ -7,10 +7,19 @@ import { message } from 'antd'
 
 class Login extends React.Component {
   state = {}
-
+  // 监听enter键登录
+  enterKeyLogin = (e) => {
+    if (e.keyCode === 13) {
+      this.handleSubmit()
+    }
+  }
   componentDidMount() {
     // 渲染canvas
     this.renderCanvas()
+    window.addEventListener('keydown', this.enterKeyLogin, false)
+  }
+  componentWillUnmount() {
+    window.removeEventListener('keydown', this.enterKeyLogin, false)
   }
   renderCanvas = () => {
     let can = document.getElementById(`canvas`)
