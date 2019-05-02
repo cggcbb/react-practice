@@ -6,6 +6,24 @@ class FilterForm extends React.Component {
   // 查询点击事件
   handleFilterSubmit = () => {
     const params = this.props.form.getFieldsValue()
+    // 过滤输出时间格式化
+    const { datePicker = this.props.formConfig.filter(item =>
+      item.type === 'DATEPICKER' || item.type === 'SIMPLE-DATEPICKER'
+    )[0]} = this.state
+    if (datePicker && !this.state.datePicker) {
+      this.setState({
+        datePicker
+      })
+    }
+    if (datePicker) {
+      for (let key in params) {
+        if (params.hasOwnProperty(key)) {
+          if (datePicker.field.includes(key)) {
+            params[key] = params[key] && moment(params[key]._d).format(datePicker.outPutFormat)
+          }
+        }
+      }
+    }
     this.props.filterSubmit(params)
   }
   handleFilterReset = () => {
