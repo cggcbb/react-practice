@@ -37,7 +37,7 @@ class Admin extends React.Component {
     this._reduxDispatch(switchMenu, breadcrumb)
   }
   // 面包屑点击事件  因为这里设置了当前路由和有二级路由的菜单不能被点击(只有首页可以点击), 所以这里可以写死'/index'
-  handleBeadcrumbClick = () => {
+  handleBreadcrumbClick = () => {
     this.setState({
       currentKey: ['/index']
     })
@@ -65,7 +65,7 @@ class Admin extends React.Component {
           />
         </Col>
         <Col span={21} className="main">
-          <Header handleBeadcrumbClick={this.handleBeadcrumbClick}></Header>
+          <Header handleBreadcrumbClick={this.handleBreadcrumbClick}></Header>
           <Row className="content">
             {this.props.children}
           </Row>
