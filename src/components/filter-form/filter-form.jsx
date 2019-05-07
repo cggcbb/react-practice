@@ -1,6 +1,5 @@
 import React from 'react'
 import { Select, Input, Form, DatePicker, Button, Checkbox } from 'antd'
-import moment from 'moment'
 const FormItem = Form.Item
 const Option = Select.Option
 class FilterForm extends React.Component {
@@ -20,7 +19,7 @@ class FilterForm extends React.Component {
       for (let key in params) {
         if (params.hasOwnProperty(key)) {
           if (datePicker.field.includes(key)) {
-            params[key] = params[key] && moment(params[key]._d).format(datePicker.outPutFormat)
+            params[key] = params[key] && params[key].format(datePicker.outPutFormat)
           }
         }
       }
