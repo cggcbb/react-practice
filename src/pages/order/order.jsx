@@ -136,7 +136,8 @@ export default class Order extends React.Component {
       format: 'YYYY-MM-DD',
       style: { marginRight: 30 },
       placeholder: ['选择开始时间', '选择结束时间'],
-      field: ['begin_time', 'end_time']
+      field: ['startTime', 'endTime'],
+      outPutFormat: 'YYYYMMDD'
     },
     {
       type: 'SELECT',

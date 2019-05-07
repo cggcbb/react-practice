@@ -2,7 +2,9 @@ import React from 'react'
 import { Select, Input, Form, DatePicker, Button, Checkbox } from 'antd'
 const FormItem = Form.Item
 const Option = Select.Option
+
 class FilterForm extends React.Component {
+  state = {}
   // 查询点击事件
   handleFilterSubmit = () => {
     const params = this.props.form.getFieldsValue()
@@ -28,6 +30,9 @@ class FilterForm extends React.Component {
   }
   handleFilterReset = () => {
     this.props.form.resetFields()
+  }
+  handleFilterExport = () => {
+    this.props.handleFilterExport()
   }
   // 初始化baseForm
   initBaseForm = () => {
@@ -119,6 +124,10 @@ class FilterForm extends React.Component {
     }
     return result
   }
+  needExport = () => {
+    const { needExport } = this.props
+    return needExport ? <Button type={needExport.type} onClick={this.handleFilterExport}>导出</Button> : ''
+  }
   render() {
     return (
       <section>
@@ -127,6 +136,7 @@ class FilterForm extends React.Component {
           <FormItem>
             <Button type="primary" onClick={this.handleFilterSubmit}>查询</Button>
             <Button onClick={this.handleFilterReset}>重置</Button>
+            {this.needExport()}
           </FormItem>
         </Form>
       </section>
