@@ -131,7 +131,7 @@ class Login extends React.Component {
 				let randomX = Math.random() * (w - 300) + 300
 				meteors.push({
           x: randomX, 
-          y: 0 ,
+          y: 0,
           changeX: randomX
         })
 			}
@@ -162,17 +162,15 @@ class Login extends React.Component {
     })
   }
   handleUserNameChange = () => {
-    let { usernameDom = document.getElementById('username')} = this.state
+    let username = this.refs['username'].value
     this.setState({
-      usernameDom,
-      username: usernameDom.value
+      username
     })
   }
   handlePasswordChange = () => {
-    let { passwordDom = document.getElementById('password')} = this.state
+    let password = this.refs['password'].value
     this.setState({
-      passwordDom,
-      password: passwordDom.value
+      password
     })
   }
   render() {
@@ -189,14 +187,14 @@ class Login extends React.Component {
               <span className="item-label">输入账号</span>
               <div className="form-input-wrapper">
                 <span className="user-name"><i></i></span>
-                <input placeholder="Except for any one of the null values" className="form-input" id="username" type="text" onChange={this.handleUserNameChange}></input>
+                <input ref="username" placeholder="Except for any one of the null values" className="form-input" type="text" onChange={this.handleUserNameChange}></input>
               </div>
             </div>
             <div className="form-item">
               <span className="item-label">登录密码</span>
               <div className="form-input-wrapper">
                 <span className="user-password"><i></i></span>
-                <input placeholder="Except for any one of the null values" className="form-input" id="password" type="password" onChange={this.handlePasswordChange}></input>
+                <input ref="password" placeholder="Except for any one of the null values" className="form-input" type="password" onChange={this.handlePasswordChange}></input>
               </div>
             </div>
             <div className="form-submit-wrapper">
