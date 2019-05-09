@@ -1,6 +1,7 @@
 import axios from 'axios'
 
 const STATUS_SUCCESS = 200
+const STATUS_401 = 401
 
 const instance = axios.create({
   baseURL: 'https://www.easy-mock.com/mock/5cabf67f1a2ff67cf5210f83/manager/mock',
@@ -15,6 +16,10 @@ instance.interceptors.request.use((config) => {
 })
 // 接收到数据, 处理数据之前
 instance.interceptors.response.use((res) => {
+  if (res.status === STATUS_401) {
+    window.sessionStorage.setItem('token', null)
+    window.location.hash = '#/login'
+  }
   return res
 }, error => {
   return Promise.reject(error)
