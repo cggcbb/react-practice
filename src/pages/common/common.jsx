@@ -4,8 +4,6 @@ import React from 'react'
 
 import 'style/common.less'
 
-// import Home from 'pages/home'
-
 class Common extends React.Component {
   render() {
     return (

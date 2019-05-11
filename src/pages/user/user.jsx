@@ -60,20 +60,17 @@ export default class User extends React.Component {
     {
       type: 'INPUT',
       field: 'user_name',
-      style: { width: 120, marginRight: 30 },
       placeholder: '用户名'
     },
     {
       type: 'INPUT',
       field: 'telephone',
-      style: { width: 120, marginRight: 30 },
       placeholder: '手机号码'
     },
     {
       type: 'SIMPLE-DATEPICKER', // 日期时间控件
       format: 'YYYY-MM-DD',
       label: '出生日期',
-      style: { marginRight: 30 },
       placeholder: '请选择出生日期',
       field: 'birthday'
     },
@@ -81,7 +78,7 @@ export default class User extends React.Component {
       type: 'SELECT',
       label: '婚姻',
       field: 'married',
-      style: { width: 120, marginRight: 30 },
+      style: { width: 120 },
       initialValue: ' ',
       list: [
         { value: ' ', name: '全部' },

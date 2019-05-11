@@ -118,7 +118,7 @@ export default class Order extends React.Component {
       type: 'SELECT',
       label: '城市',
       field: 'city_id',
-      style: { width: 120, marginRight: 30 },
+      style: { width: 120 },
       initialValue: '1',
       placeholder: '全部',
       list: [
@@ -134,7 +134,6 @@ export default class Order extends React.Component {
     {
       type: 'DATEPICKER', // 日期时间控件
       format: 'YYYY-MM-DD',
-      style: { marginRight: 30 },
       placeholder: ['选择开始时间', '选择结束时间'],
       field: ['startTime', 'endTime'],
       outPutFormat: 'YYYYMMDD'
@@ -143,7 +142,7 @@ export default class Order extends React.Component {
       type: 'SELECT',
       label: '订单状态',
       field: 'order_status',
-      style: { width: 120, marginRight: 30 },
+      style: { width: 120 },
       initialValue: '1',
       placeholder: '全部',
       list: [
@@ -156,7 +155,7 @@ export default class Order extends React.Component {
       type: 'SELECT',
       label: '类型',
       field: 'type',
-      style: { width: 120, marginRight: 30 },
+      style: { width: 120 },
       initialValue: '1',
       placeholder: '全部',
       list: [

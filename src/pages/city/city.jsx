@@ -103,7 +103,6 @@ export default class City extends React.Component {
       type: 'SELECT',
       label: '城市',
       field: 'city_id',
-      style: { width: 120, marginRight: 30 },
       initialValue: '1',
       list: [
         { value: ' ', name: '全部' },
@@ -120,7 +119,7 @@ export default class City extends React.Component {
       label: '运营模式',
       field: 'operate_mode',
       initialValue: '1',
-      style: { width: 120, marginRight: 30 },
+      style: { width: 120 },
       list: [
         { value: ' ', name: '全部' },
         { value: '1', name: '自营' },
@@ -131,7 +130,7 @@ export default class City extends React.Component {
       type: 'SELECT',
       label: '用车模式',
       field: 'use_mode',
-      style: { width: 120, marginRight: 30 },
+      style: { width: 120 },
       initialValue: '1',
       list: [
         { value: ' ', name: '全部' },
@@ -143,7 +142,7 @@ export default class City extends React.Component {
       type: 'SELECT',
       label: '授权状态',
       field: 'auth_state',
-      style: { width: 120, marginRight: 30 },
+      style: { width: 120 },
       initialValue: '1',
       list: [
         { value: ' ', name: '全部' },
