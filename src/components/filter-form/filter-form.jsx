@@ -45,7 +45,7 @@ class FilterForm extends React.Component {
         switch (type) {
           case 'INPUT':
             const input = 
-              <FormItem label={label} key={field}>
+              <FormItem label={label} key={field} style={style}>
                 {
                   getFieldDecorator([field], {
                     initialValue
