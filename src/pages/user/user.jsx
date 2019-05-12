@@ -97,15 +97,15 @@ export default class User extends React.Component {
   }
   // 弹窗确定按钮点击事件
   handleSubmit = () => {
-    let filedObject = this.userForm.props.form.getFieldsValue()
-    let fieldKeyArray = Object.keys(filedObject)
+    let fieldObject = this.userForm.props.form.getFieldsValue()
+    let fieldKeyArray = Object.keys(fieldObject)
     for (let key of fieldKeyArray) {
-      if (!filedObject[key]) {
+      if (!fieldObject[key]) {
         message.error(`${this.fieldConfig[key]}不能为空！`)
         return
       }
     }
-    let { user_name, sex, married, email, telephone, address } = filedObject
+    let { user_name, sex, married, email, telephone, address } = fieldObject
     notification.success({
       message: `${this.typeConfig[this.state.type]}成功`,
       description: `用户名【${user_name}】，性别【${this.sexConfig[sex]}】，婚姻【${this.marriedConfig[married]}】，电子邮箱【${email}】，电话号码【${telephone}】，联系地址【${address}】`,
