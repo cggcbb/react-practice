@@ -37,24 +37,9 @@ export const loginLoadingComponent = ({ isLoading, error }) => {
 // 其他页面加载
 export const loading = ({ isLoading }) => {
   if (isLoading) {
-    return <div style={{position: 'absolute', width: '100%', height: 'calc(100vh)', background: 'rgba(255, 255, 255, 1)'}}>
-      <div style={
-        {
-          position: 'absolute',
-          color: '#000',
-          fontSize: 40,
-          left: 0,
-          top: 0,
-          right: 0,
-          bottom: 0,
-          textAlign: 'center',
-          lineHeight: 'calc(100vh)',
-          letterSpacing: 3,
-          fontStyle: 'italic'
-        }
-      }
-      >Loading ... </div>
-    </div>
+    return (
+      ''
+    )
   }
   return null
 }
