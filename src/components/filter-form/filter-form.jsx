@@ -1,5 +1,10 @@
 import React from 'react'
+import locale from 'antd/lib/date-picker/locale/zh_CN'
 import { Select, Input, Form, DatePicker, Button, Checkbox } from 'antd'
+import moment from 'moment'
+import 'moment/locale/zh-cn'
+moment.locale('zh-cn')
+
 const FormItem = Form.Item
 const Option = Select.Option
 
@@ -92,7 +97,7 @@ class FilterForm extends React.Component {
               <FormItem key={field[0]}>
                 {
                   getFieldDecorator([field[0]])(
-                    <DatePicker placeholder={placeholder[0]} format={format}></DatePicker>
+                    <DatePicker locale={locale} placeholder={placeholder[0]} format={format}></DatePicker>
                   )
                 }
               </FormItem>
@@ -100,7 +105,7 @@ class FilterForm extends React.Component {
               <FormItem key={field[1]} label="~" colon={false}>
                 {
                   getFieldDecorator([field[1]])(
-                    <DatePicker placeholder={placeholder[1]} format={format} style={style}></DatePicker>
+                    <DatePicker locale={locale} placeholder={placeholder[1]} format={format} style={style}></DatePicker>
                   )
                 }
               </FormItem>
@@ -112,7 +117,7 @@ class FilterForm extends React.Component {
               <FormItem key={field} label={label}>
                 {
                   getFieldDecorator([field])(
-                    <DatePicker placeholder={placeholder} format={format}></DatePicker>
+                    <DatePicker locale={locale} placeholder={placeholder} format={format}></DatePicker>
                   )
                 }
               </FormItem>
