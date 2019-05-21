@@ -1,60 +1,48 @@
 import React from 'react'
+import { Spin } from 'antd'
 
-// 登录页面加载背景提示
-export const loginLoadingComponent = ({ isLoading, error }) => {
-  const loadingText = (text, isLogin = false) => {
-    return <div style={{position: 'absolute', width: '100%', height: 'calc(100vh)', background: 'rgba(0, 0, 0, .9)'}}>
-      <div style={
-        {
-          position: 'absolute',
-          color: '#fff',
-          fontSize: 40,
-          left: 0,
-          top: 0,
-          right: 0,
-          bottom: 0,
-          textAlign: 'center',
-          lineHeight: 'calc(100vh)',
-          letterSpacing: 3,
-          fontStyle: 'italic'
-        }
-      }
-      >{text}</div>
-    </div>
-  }
+// 页面加载背景
+export const loading = ({ isLoading, error }) => {
   if (isLoading) {
     return (
-      loadingText('Loading ...')
+      <div style={{position: 'absolute', width: '100%', height: 'calc(100vh)', background: '#fff'}}>
+        <div style={
+          {
+            position: 'absolute',
+            left: 0,
+            top: 0,
+            right: 0,
+            bottom: 0,
+            textAlign: 'center',
+            lineHeight: 'calc(100vh)',
+            fontStyle: 'italic'
+          }
+        }
+        >
+          <Spin size="large" />
+        </div>
+    </div>
     )
   }
   else if (error) {
-    return loadingText('Sorry, there was a problem loading the page.')
+    return `Sorry, there was a problem loading the page.`
   }
   else {
     return null
   }
 }
-// 其他页面加载
-export const loading = ({ isLoading }) => {
+
+// 不需要加载样式
+export const noLoading = ({ isLoading, error }) => {
   if (isLoading) {
-    return <div style={{position: 'absolute', width: '100%', height: 'calc(100vh)', background: 'rgba(255, 255, 255, 1)'}}>
-      <div style={
-        {
-          position: 'absolute',
-          color: '#000',
-          fontSize: 40,
-          left: 0,
-          top: 0,
-          right: 0,
-          bottom: 0,
-          textAlign: 'center',
-          lineHeight: 'calc(100vh)',
-          letterSpacing: 3,
-          fontStyle: 'italic'
-        }
-      }
-      >Loading ... </div>
-    </div>
+    return (
+      null
+    )
   }
-  return null
+  else if (error) {
+    return `Sorry, there was a problem loading the page.`
+  }
+  else {
+    return null
+  }
 }

@@ -2,13 +2,13 @@ import { HashRouter, Route, Switch, Redirect } from 'react-router-dom'
 import { AuthorizeRoute } from './authorize'
 import Loadable from 'react-loadable'
 import React from 'react'
-import { loginLoadingComponent, loading } from './router-loading'
+import { loading, noLoading } from './router-loading'
 
-const Admin =        Loadable({ loader: () => import('pages/admin/admin'), loading })
-const App =          Loadable({ loader: () => import('@/App'), loading })
+const Admin =        Loadable({ loader: () => import('pages/admin/admin'), loading: noLoading })
+const App =          Loadable({ loader: () => import('@/App'), loading: noLoading })
 const Button =       Loadable({ loader: () => import('pages/ui/button/button'), loading })
 const Loading =      Loadable({ loader: () => import('pages/ui/loading/loading'), loading })
-const Login =        Loadable({ loader: () => import('pages/login/login'), loading: loginLoadingComponent })
+const Login =        Loadable({ loader: () => import('pages/login/login'), loading })
 const Home =         Loadable({ loader: () => import('pages/home/home'), loading })
 const Modal =        Loadable({ loader: () => import('pages/ui/modal/modal'), loading })
 const Notice =       Loadable({ loader: () => import('pages/ui/notice/notice'), loading })
